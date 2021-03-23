@@ -18,8 +18,8 @@ const Header = (props: IHeaderProps) => {
         </div>
 
         <div className="main-title">
-          <span className="light">MapApp </span>
-          <span className="normal">Base</span>
+          <span className="light">Parental Alienation </span>
+          <span className="normal">Resource Map</span>
         </div>
 
       </a>

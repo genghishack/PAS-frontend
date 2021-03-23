@@ -9,13 +9,13 @@ const local = {
   },
   apiGateway: {
     REGION: 'us-west-2',
-    URL: 'https://uyg8w8w7le.execute-api.us-west-2.amazonaws.com/dev'
+    URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
   },
   cognito: {
     REGION: 'us-west-2',
-    USER_POOL_ID: 'us-west-2_ZJQVMR8HA',
-    APP_CLIENT_ID: '1d5skmdk6l5qj9rvd516hsosd4',
-    IDENTITY_POOL_ID: 'us-west-2:e1eb175e-9c5c-4ad1-bf72-8c0ee00b5647'
+    USER_POOL_ID: 'us-west-2_wvUVsyZMh',
+    APP_CLIENT_ID: '6ur84l637dvmtvis5gbjnidppa',
+    IDENTITY_POOL_ID: 'us-west-2:b966e418-e1df-40ed-af10-847b2ec954c1'
   }
 };
 
@@ -30,13 +30,13 @@ const dev = {
   },
   apiGateway: {
     REGION: 'us-west-2',
-    URL: 'https://uyg8w8w7le.execute-api.us-west-2.amazonaws.com/dev'
+    URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
   },
   cognito: {
     REGION: 'us-west-2',
-    USER_POOL_ID: 'us-west-2_ZJQVMR8HA',
-    APP_CLIENT_ID: '1d5skmdk6l5qj9rvd516hsosd4',
-    IDENTITY_POOL_ID: 'us-west-2:e1eb175e-9c5c-4ad1-bf72-8c0ee00b5647'
+    USER_POOL_ID: 'us-west-2_wvUVsyZMh',
+    APP_CLIENT_ID: '6ur84l637dvmtvis5gbjnidppa',
+    IDENTITY_POOL_ID: 'us-west-2:b966e418-e1df-40ed-af10-847b2ec954c1'
   }
 };
 
@@ -51,13 +51,13 @@ const test = {
   },
   apiGateway: {
     REGION: 'us-west-2',
-    URL: 'https://uyg8w8w7le.execute-api.us-west-2.amazonaws.com/dev'
+    URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
   },
   cognito: {
     REGION: 'us-west-2',
-    USER_POOL_ID: 'us-west-2_ZJQVMR8HA',
-    APP_CLIENT_ID: '1d5skmdk6l5qj9rvd516hsosd4',
-    IDENTITY_POOL_ID: 'us-west-2:e1eb175e-9c5c-4ad1-bf72-8c0ee00b5647'
+    USER_POOL_ID: 'us-west-2_wvUVsyZMh',
+    APP_CLIENT_ID: '6ur84l637dvmtvis5gbjnidppa',
+    IDENTITY_POOL_ID: 'us-west-2:b966e418-e1df-40ed-af10-847b2ec954c1'
   }
 };
 
@@ -72,13 +72,13 @@ const prod = {
   },
   apiGateway: {
     REGION: 'us-west-2',
-    URL: 'https://uyg8w8w7le.execute-api.us-west-2.amazonaws.com/dev'
+    URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
   },
   cognito: {
     REGION: 'us-west-2',
-    USER_POOL_ID: 'us-west-2_ZJQVMR8HA',
-    APP_CLIENT_ID: '1d5skmdk6l5qj9rvd516hsosd4',
-    IDENTITY_POOL_ID: 'us-west-2:e1eb175e-9c5c-4ad1-bf72-8c0ee00b5647'
+    USER_POOL_ID: 'us-west-2_wvUVsyZMh',
+    APP_CLIENT_ID: '6ur84l637dvmtvis5gbjnidppa',
+    IDENTITY_POOL_ID: 'us-west-2:b966e418-e1df-40ed-af10-847b2ec954c1'
   }
 };
 

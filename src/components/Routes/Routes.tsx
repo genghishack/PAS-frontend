@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 import {UserRoute, GuestRoute, AdminRoute} from "./RouteLevels";
 import NotFound from '../NotFound';
@@ -9,32 +9,32 @@ import ProfileContainer from "../../containers/ProfileContainer";
 import AdminContainer from '../../containers/AdminContainer';
 import ResourceContainer from '../../containers/ResourceContainer';
 
-const Routes = () => {
+const TopRoutes = () => {
   return (
-    <Switch>
-      <Route exact path="/">
+    <Routes>
+      <Route path="/">
         <ResourceContainer/>
       </Route>
-      <Route exact path="/about">
+      <Route path="/about">
         <About/>
       </Route>
-      <GuestRoute exact path="/auth">
+      <GuestRoute path="/auth">
         <AuthContainer/>
       </GuestRoute>
-      <UserRoute exact path="/profile">
+      <UserRoute path="/profile">
         <ProfileContainer/>
       </UserRoute>
-      <AdminRoute exact path="/admin">
+      <AdminRoute path="/admin">
         <AdminContainer/>
       </AdminRoute>
-      <UserRoute exact path="/:userId" component={ResourceContainer}>
+      <UserRoute path="/:userId" component={ResourceContainer}>
         {null}
       </UserRoute>
       <Route>
         <NotFound/>
       </Route>
-    </Switch>
+    </Routes>
   )
 }
 
-export default Routes;
+export default TopRoutes;

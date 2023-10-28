@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {Auth} from "aws-amplify";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {AuthContext} from "../context/AuthContext";
@@ -26,7 +26,7 @@ interface IAuthContainerProps {
 
 const AuthContainer = (props: IAuthContainerProps) => {
   const {dispatch, currentUser} = props;
-  const history = useHistory();
+  const navigate = useNavigate();
   const isMountedRef = useIsMountedRef();
   const {setIsAuthenticated} = useAppContext()
   const [authPhase, setAuthPhase] = useState('login');
@@ -64,10 +64,10 @@ const AuthContainer = (props: IAuthContainerProps) => {
       if (isMountedRef.current) {
         clearPassword();
         resetFormState();
-        history.push("/");
+        navigate("/");
       }
     }
-  }, [currentUser, clearPassword, resetFormState, history, isMountedRef]);
+  }, [currentUser, clearPassword, resetFormState, navigate, isMountedRef]);
 
   const authPhaseTransition = (phase) => {
     resetFormState()
@@ -95,7 +95,7 @@ const AuthContainer = (props: IAuthContainerProps) => {
         setIsAuthenticated(true);
         await updateStateWithCurrentUser();
       }
-    } catch (e) {
+    } catch (e: any) {
       if (authPhase === 'signup' && e.code === 'NotAuthorizedException') {
         alert('User already exists.');
       }

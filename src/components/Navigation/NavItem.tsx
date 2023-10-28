@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory, useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 interface INavItemProps {
   label: string;
@@ -9,12 +9,12 @@ interface INavItemProps {
 
 const NavItem = (props: INavItemProps) => {
   const {label, pathname, callback} = props;
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleClick = () => {
     if (pathname) {
-      return history.push(pathname);
+      return navigate(pathname);
     }
     if (callback) {
       callback()

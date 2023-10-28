@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Redirect, useLocation} from "react-router-dom";
+import {Route, Navigate, useLocation} from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 
 function querystring(name, url = window.location.href) {
@@ -26,7 +26,7 @@ export const GuestRoute = ({ children, ...rest }) => {
       {!isAuthenticated ? (
         children
       ) : (
-        <Redirect to={redirect === "" || redirect === null ? "/" : redirect} />
+        <Navigate replace to={redirect === "" || redirect === null ? "/" : redirect} />
       )}
     </Route>
   );
@@ -40,7 +40,7 @@ export const UserRoute = ({ children, ...rest }) => {
       {isAuthenticated ? (
         children
       ) : (
-        <Redirect to={
+        <Navigate replace to={
           `/auth?redirect=${pathname}${search}`
         } />
       )}
@@ -56,7 +56,7 @@ export const EditorRoute = ({ children, ...rest }) => {
       {isAuthenticated && (isEditor || isAdmin) ? (
         children
       ) : (
-        <Redirect to={
+        <Navigate replace to={
           `/auth?redirect=${pathname}${search}`
         } />
       )}
@@ -72,7 +72,7 @@ export const AdminRoute = ({ children, ...rest }) => {
       {isAuthenticated && (isAdmin) ? (
         children
       ) : (
-        <Redirect to={
+        <Navigate replace to={
           `/auth?redirect=${pathname}${search}`
         } />
       )}

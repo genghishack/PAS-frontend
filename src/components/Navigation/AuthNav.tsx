@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Auth} from "aws-amplify";
 import {connect} from "react-redux";
 import {Button, Dropdown, DropdownButton} from "react-bootstrap";
@@ -18,18 +18,18 @@ interface IAuthNav {
 const AuthNav = (props: IAuthNav) => {
   const {dispatch, currentUser} = props;
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated, isAdmin } = useAppContext();
 
-  const navigate = (destination) => {
-    history.push(`/${destination}`);
+  const navigateTo = (destination) => {
+    navigate(`/${destination}`);
   }
 
   const handleLogout = async () => {
     await Auth.signOut()
     setIsAuthenticated(false);
     dispatch(setCurrentUser({}));
-    history.push('/');
+    navigate('/');
   }
 
   const getUserDisplayName = () => {
@@ -54,11 +54,11 @@ const AuthNav = (props: IAuthNav) => {
               variant="link"
             >
               {isAdmin ? (
-                <DropdownItem onClick={() => navigate('admin')}>
+                <DropdownItem onClick={() => navigateTo('admin')}>
                   Admin Tools
                 </DropdownItem>
               ) : null}
-              <DropdownItem onClick={() => navigate('profile')}>
+              <DropdownItem onClick={() => navigateTo('profile')}>
                 Profile
               </DropdownItem>
               <DropdownItem onClick={handleLogout}>
@@ -70,7 +70,7 @@ const AuthNav = (props: IAuthNav) => {
       ) : (
         <Button
           variant="link"
-          onClick={() => navigate('auth')}
+          onClick={() => navigateTo('auth')}
         >Login</Button>
       )}
     </div>

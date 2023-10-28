@@ -18,17 +18,14 @@ function querystring(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export const GuestRoute = ({ children, ...rest }) => {
+export const GuestRoute = (path, element) => {
   const { isAuthenticated } = useAppContext();
-  const redirect = querystring("redirect");
+  // if (isAuthenticated) {
+  //   element = (<Navigate replace to={redirect === "" || redirect === null ? "/" : redirect} />)
+  // }
+  // <Route {...rest} element={element}></Route>
   return (
-    <Route {...rest}>
-      {!isAuthenticated ? (
-        children
-      ) : (
-        <Navigate replace to={redirect === "" || redirect === null ? "/" : redirect} />
-      )}
-    </Route>
+    <Route path={path} element={element}/>
   );
 }
 

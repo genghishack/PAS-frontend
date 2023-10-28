@@ -11,6 +11,10 @@ const local = {
     REGION: 'us-west-2',
     URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
   },
+  apiExpress: {
+    REGION: 'us-west-2',
+    URL: 'http://52.24.236.138:3000'
+  },
   cognito: {
     REGION: 'us-west-2',
     USER_POOL_ID: 'us-west-2_wvUVsyZMh',
@@ -31,6 +35,10 @@ const dev = {
   apiGateway: {
     REGION: 'us-west-2',
     URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
+  },
+  apiExpress: {
+    REGION: 'us-west-2',
+    URL: 'http://52.24.236.138:3000'
   },
   cognito: {
     REGION: 'us-west-2',
@@ -53,6 +61,10 @@ const test = {
     REGION: 'us-west-2',
     URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
   },
+  apiExpress: {
+    REGION: 'us-west-2',
+    URL: 'http://52.24.236.138:3000'
+  },
   cognito: {
     REGION: 'us-west-2',
     USER_POOL_ID: 'us-west-2_wvUVsyZMh',
@@ -73,6 +85,10 @@ const prod = {
   apiGateway: {
     REGION: 'us-west-2',
     URL: 'https://te63jdj17g.execute-api.us-west-2.amazonaws.com/dev'
+  },
+  apiExpress: {
+    REGION: 'us-west-2',
+    URL: 'http://52.24.236.138:3000'
   },
   cognito: {
     REGION: 'us-west-2',

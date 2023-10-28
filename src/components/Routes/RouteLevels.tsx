@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Redirect, useLocation} from "react-router-dom";
+import {Route, Navigate, useLocation} from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 
 function querystring(name, url = window.location.href) {
@@ -18,17 +18,14 @@ function querystring(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export const GuestRoute = ({ children, ...rest }) => {
+export const GuestRoute = (path, element) => {
   const { isAuthenticated } = useAppContext();
-  const redirect = querystring("redirect");
+  // if (isAuthenticated) {
+  //   element = (<Navigate replace to={redirect === "" || redirect === null ? "/" : redirect} />)
+  // }
+  // <Route {...rest} element={element}></Route>
   return (
-    <Route {...rest}>
-      {!isAuthenticated ? (
-        children
-      ) : (
-        <Redirect to={redirect === "" || redirect === null ? "/" : redirect} />
-      )}
-    </Route>
+    <Route path={path} element={element}/>
   );
 }
 
@@ -40,7 +37,7 @@ export const UserRoute = ({ children, ...rest }) => {
       {isAuthenticated ? (
         children
       ) : (
-        <Redirect to={
+        <Navigate replace to={
           `/auth?redirect=${pathname}${search}`
         } />
       )}
@@ -56,7 +53,7 @@ export const EditorRoute = ({ children, ...rest }) => {
       {isAuthenticated && (isEditor || isAdmin) ? (
         children
       ) : (
-        <Redirect to={
+        <Navigate replace to={
           `/auth?redirect=${pathname}${search}`
         } />
       )}
@@ -72,7 +69,7 @@ export const AdminRoute = ({ children, ...rest }) => {
       {isAuthenticated && (isAdmin) ? (
         children
       ) : (
-        <Redirect to={
+        <Navigate replace to={
           `/auth?redirect=${pathname}${search}`
         } />
       )}

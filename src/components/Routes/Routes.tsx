@@ -9,32 +9,24 @@ import ProfileContainer from "../../containers/ProfileContainer";
 import AdminContainer from '../../containers/AdminContainer';
 import ResourceContainer from '../../containers/ResourceContainer';
 
-const TopRoutes = () => {
+const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/">
-        <ResourceContainer/>
-      </Route>
-      <Route path="/about">
-        <About/>
-      </Route>
-      <GuestRoute path="/auth">
-        <AuthContainer/>
-      </GuestRoute>
-      <UserRoute path="/profile">
-        <ProfileContainer/>
-      </UserRoute>
-      <AdminRoute path="/admin">
-        <AdminContainer/>
-      </AdminRoute>
-      <UserRoute path="/:userId" component={ResourceContainer}>
-        {null}
-      </UserRoute>
-      <Route>
-        <NotFound/>
-      </Route>
+      <Route path="/" element={<ResourceContainer/>} />
+      <Route path="/about" element={<About/>} />
+      {/*<GuestRoute path="/auth" element={<AuthContainer/>} />*/}
+      {/*<UserRoute path="/profile">*/}
+        {/*<ProfileContainer/>*/}
+      {/*</UserRoute>*/}
+      {/*<AdminRoute path="/admin">*/}
+        {/*<AdminContainer/>*/}
+      {/*</AdminRoute>*/}
+      {/*<UserRoute path="/:userId" component={ResourceContainer}>*/}
+        {/*{null}*/}
+      {/*</UserRoute>*/}
+      <Route path="*" element={<NotFound/>} />
     </Routes>
   )
 }
 
-export default TopRoutes;
+export default AppRoutes;

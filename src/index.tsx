@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { Amplify } from 'aws-amplify';
 // import {debugContextDevtool} from 'react-context-devtool';
@@ -35,14 +36,13 @@ Amplify.configure({
 });
 
 const container = document.getElementById('root');
-
-ReactDOM.render(
+const root = createRoot(container!); // createRoot(container!) if you use TypeScript
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
-  container
+  </React.StrictMode>
 );
 
 /*// This causes console errors, so it's commented until needed for debugging

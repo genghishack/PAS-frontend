@@ -1,7 +1,6 @@
 import React from 'react';
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 
-import {UserRoute, GuestRoute, AdminRoute} from "./RouteLevels";
 import NotFound from '../NotFound';
 import About from "../About";
 import AuthContainer from "../../containers/AuthContainer";

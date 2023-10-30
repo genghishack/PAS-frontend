@@ -1,10 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {connect} from "react-redux";
 
 import {getResources} from "../libs/resourceLib";
 import {ResourceContext} from '../context/ResourceContext';
-import {setResources} from "../redux/actions/resources";
-import {setError} from "../redux/actions/errors";
 import ResourceMap from "../components/ResourceMap/ResourceMap";
 import InfoPanel from "../components/InfoPanel/InfoPanel";
 import NavPanel from '../components/NavPanel/NavPanel';
@@ -14,15 +11,15 @@ import SubmitResourceModal from "../components/Modal/SubmitResourceModal";
 import AddResourceModal from "../components/Modal/AddResourceModal";
 
 import './Resource.scss';
+import {useAppContext} from "../context/AppContext";
 
 interface IResourceContainer {
-  dispatch: Function;
-  resources?: any;
   match?: any;
 }
 
 const ResourceContainer = (props: IResourceContainer) => {
-  const {dispatch, resources, match} = props;
+  const {match} = props;
+  const {resources, setResources} = useAppContext();
 
   const [displayedResource, setDisplayedResource] = useState({});
   const [selectedResource, setSelectedResource] = useState({});
@@ -40,11 +37,11 @@ const ResourceContainer = (props: IResourceContainer) => {
     let markers = {data: []};
     try {
       markers = await getResources(userId);
-      dispatch(setResources(markers.data));
+      setResources(markers.data);
     } catch (e) {
-      dispatch(setError(e));
+      // setError(e);
     }
-  }, [dispatch, userId]);
+  }, [userId]);
 
   //@ts-ignore
   useEffect(() => {
@@ -81,11 +78,4 @@ const ResourceContainer = (props: IResourceContainer) => {
   )
 }
 
-function mapStateToProps(state: { errors: any; resources: any; }) {
-  return {
-    resources: state.resources,
-    errors: state.errors,
-  };
-}
-
-export default connect(mapStateToProps)(ResourceContainer);
+export default ResourceContainer;

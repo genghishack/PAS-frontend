@@ -1,8 +1,10 @@
-import {API} from "aws-amplify";
+import {API, Auth} from "aws-amplify";
+import axios from "axios";
 
 export const getUser = async (id = null) => {
   if (!id) {
-    return API.get('mapapp', '/user/self', {});
+    const userLambda = await API.get('mapapp', '/user/self', {});
+    return userLambda;
   }
   else {
     return API.get('mapapp', `/user/${id}`, {});
@@ -19,7 +21,18 @@ export const createUser = async (userData: null | any = null) => {
 }
 
 export const listUsers = async () => {
-  return API.get('mapapp', '/user', {});
+
+  const currentSession = await Auth.currentSession();
+  const accessToken = await currentSession.getAccessToken().getJwtToken();
+  // console.log({accessToken})
+  const expressUserList = await axios.get('http://localhost:3000/user/', {
+    headers: {Authorization: accessToken}
+  });
+  console.log({expressUserList});
+
+  const lambdaUserList = await API.get('mapapp', '/user', {});
+  console.log({lambdaUserList});
+  return lambdaUserList;
 }
 
 export const deleteUser = async (id) => {

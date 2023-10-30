@@ -1,21 +1,16 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/esm/Button';
-import {connect} from "react-redux";
 import {Auth} from "aws-amplify";
 
 import LoaderButton from "../LoaderButton/LoaderButton";
 import {getUser} from "../../libs/userLib";
-import {setCurrentUser} from "../../redux/actions/currentUser";
 import {onError} from "../../libs/errorLib";
 import {useProfileContext} from "../../context/ProfileContext";
+import {useAppContext} from "../../context/AppContext";
 
-interface IChangeEmailConfirmation {
-  dispatch: Function;
-}
-
-const ChangeEmailConfirmation = (props: IChangeEmailConfirmation) => {
-  const {dispatch} = props;
+const ChangeEmailConfirmation = () => {
+  const {setCurrentUser} = useAppContext();
   const {
     profilePhaseTransition,
     isLoading, setIsLoading,
@@ -33,7 +28,7 @@ const ChangeEmailConfirmation = (props: IChangeEmailConfirmation) => {
     try {
       await Auth.verifyCurrentUserAttributeSubmit("email", fields.confirmationCode);
       const user = await getUser();
-      dispatch(setCurrentUser(user.data))
+      setCurrentUser(user.data);
       profilePhaseTransition('profile');
     } catch (error) {
       onError(error);
@@ -79,10 +74,4 @@ const ChangeEmailConfirmation = (props: IChangeEmailConfirmation) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    errors: state.errors,
-  }
-}
-
-export default connect(mapStateToProps)(ChangeEmailConfirmation);
+export default ChangeEmailConfirmation;

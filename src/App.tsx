@@ -1,36 +1,31 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Auth} from 'aws-amplify';
-import {connect} from "react-redux";
 
 import {AppContext} from "./context/AppContext";
 import {onError} from "./libs/errorLib";
 import {getUser} from './libs/userLib';
-import {setCurrentUser} from "./redux/actions/currentUser";
 import Routes from './components/Routes/Routes';
 import Header from "./components/Header/Header";
 
 import './App.scss';
+import {defaultUserObj, ResourceObj, UserObj} from "./types/App";
 
-interface IAppProps {
-  dispatch: Function;
-  currentUser: any;
-}
-
-const App = (props: IAppProps) => {
-  const {dispatch, currentUser} = props;
+const App = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isEditor, setIsEditor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState<UserObj>(defaultUserObj);
+  const [resources, setResources] = useState<ResourceObj[]>([]);
 
   const onLoad = useCallback(async () => {
     try {
       await Auth.currentSession();
       setIsAuthenticated(true);
       if (!currentUser.id) {
-        const user = await getUser();
-        dispatch(setCurrentUser(user.data));
+        const {data: user} = await getUser();
+        setCurrentUser(user);
       }
     } catch (e: any) {
       if (e !== 'No current user' && e.code !== 'UserNotFoundException') {
@@ -38,7 +33,7 @@ const App = (props: IAppProps) => {
       }
     }
     setIsAuthenticating(false);
-  }, [currentUser.id, dispatch])
+  }, [currentUser.id])
 
   useEffect(() => {
     onLoad();
@@ -63,8 +58,8 @@ const App = (props: IAppProps) => {
       ) : (
         <>
           <AppContext.Provider value={{
-            isAuthenticated, setIsAuthenticated,
-            isEditor, isAdmin,
+            isAuthenticated, setIsAuthenticated, isEditor, isAdmin,
+            currentUser, setCurrentUser, resources, setResources
           }}>
             <Router>
               <Header/>
@@ -79,11 +74,4 @@ const App = (props: IAppProps) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.currentUser,
-    errors: state.errors,
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

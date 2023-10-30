@@ -15,6 +15,10 @@ const local = {
     REGION: 'us-west-2',
     URL: 'http://52.24.236.138:3000'
   },
+  apiLocal: {
+    REGION: 'us-west-2',
+    URL: 'http://localhost:3000'
+  },
   cognito: {
     REGION: 'us-west-2',
     USER_POOL_ID: 'us-west-2_wvUVsyZMh',
@@ -39,6 +43,10 @@ const dev = {
   apiExpress: {
     REGION: 'us-west-2',
     URL: 'http://52.24.236.138:3000'
+  },
+  apiLocal: {
+    REGION: 'us-west-2',
+    URL: 'http://localhost:3000'
   },
   cognito: {
     REGION: 'us-west-2',
@@ -65,6 +73,10 @@ const test = {
     REGION: 'us-west-2',
     URL: 'http://52.24.236.138:3000'
   },
+  apiLocal: {
+    REGION: 'us-west-2',
+    URL: 'http://localhost:3000'
+  },
   cognito: {
     REGION: 'us-west-2',
     USER_POOL_ID: 'us-west-2_wvUVsyZMh',
@@ -89,6 +101,10 @@ const prod = {
   apiExpress: {
     REGION: 'us-west-2',
     URL: 'http://52.24.236.138:3000'
+  },
+  apiLocal: {
+    REGION: 'us-west-2',
+    URL: 'http://localhost:3000'
   },
   cognito: {
     REGION: 'us-west-2',

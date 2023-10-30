@@ -1,14 +1,12 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {Auth} from "aws-amplify";
 import {useNavigate} from "react-router-dom";
-import {connect} from "react-redux";
 
 import {AuthContext} from "../context/AuthContext";
 import {useAppContext} from '../context/AppContext';
 import {useFormFields, useIsMountedRef} from "../libs/hooksLib";
 import {getUser} from "../libs/userLib";
 import {onError} from "../libs/errorLib";
-import {setCurrentUser} from "../redux/actions/currentUser";
 import Signup from "../components/Auth/Signup";
 import SignupConfirmation from "../components/Auth/SignupConfirmation";
 import ResetPassword from "../components/Auth/ResetPassword";
@@ -19,16 +17,10 @@ import Login from '../components/Auth/Login';
 
 import './Auth.scss';
 
-interface IAuthContainerProps {
-  dispatch: Function;
-  currentUser: any;
-}
-
-const AuthContainer = (props: IAuthContainerProps) => {
-  const {dispatch, currentUser} = props;
+const AuthContainer = () => {
   const navigate = useNavigate();
   const isMountedRef = useIsMountedRef();
-  const {setIsAuthenticated} = useAppContext()
+  const {setIsAuthenticated, currentUser, setCurrentUser} = useAppContext()
   const [authPhase, setAuthPhase] = useState('login');
   const [isLoading, setIsLoading] = useState(false);
   const [newUser, setNewUser] = useState(null);
@@ -76,7 +68,7 @@ const AuthContainer = (props: IAuthContainerProps) => {
 
   const updateStateWithCurrentUser = async () => {
     const user = await getUser();
-    dispatch(setCurrentUser(user.data));
+    setCurrentUser(user.data);
   }
 
   const attemptSignin = async () => {
@@ -142,11 +134,4 @@ const AuthContainer = (props: IAuthContainerProps) => {
   )
 }
 
-function mapStateToProps(state: { errors: any; currentUser: any; }) {
-  return {
-    currentUser: state.currentUser,
-    errors: state.errors,
-  };
-}
-
-export default connect(mapStateToProps)(AuthContainer);
+export default AuthContainer;

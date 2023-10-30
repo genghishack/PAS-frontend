@@ -1,20 +1,14 @@
 import React from "react";
-import {connect} from "react-redux";
 
 import {useProfileContext} from "../../context/ProfileContext";
 import LoaderButton from "../LoaderButton/LoaderButton";
 
 import './Profile.scss';
+import {useAppContext} from "../../context/AppContext";
 
-interface IProfileProps {
-  currentUser: any;
-}
-
-const Profile = (props: IProfileProps) => {
-  const {currentUser} = props;
-  const {
-    profilePhaseTransition
-  } = useProfileContext();
+const Profile = () => {
+  const {currentUser} = useAppContext();
+  const {profilePhaseTransition} = useProfileContext();
 
   const {name, email, roles} = currentUser;
 
@@ -54,7 +48,7 @@ const Profile = (props: IProfileProps) => {
 
       <div className="userAttributeRow">
           {/*@ts-ignore*/}
-          <LoaderButton block onClick={() => profilePhaseTransition('password')}>
+          <LoaderButton block={true} onClick={() => profilePhaseTransition('password')}>
             Change Password
           </LoaderButton>
       </div>
@@ -63,11 +57,4 @@ const Profile = (props: IProfileProps) => {
   );
 }
 
-const mapStateToProps = (state: { errors: any; currentUser: any }) => {
-  return {
-    currentUser: state.currentUser,
-    errors: state.errors,
-  }
-}
-
-export default connect(mapStateToProps)(Profile);
+export default Profile;

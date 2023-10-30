@@ -2,20 +2,15 @@ import React from "react";
 import {Auth} from "aws-amplify";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import {connect} from "react-redux";
 
 import LoaderButton from "../LoaderButton/LoaderButton";
 import {onError} from "../../libs/errorLib";
 import {getUser} from '../../libs/userLib';
 import {useProfileContext} from "../../context/ProfileContext";
-import {setCurrentUser} from "../../redux/actions/currentUser";
+import {useAppContext} from "../../context/AppContext";
 
-interface IChangeNameProps {
-  dispatch: Function;
-}
-
-const ChangeName = (props: IChangeNameProps) => {
-  const {dispatch} = props;
+const ChangeName = () => {
+  const {setCurrentUser} = useAppContext();
   const {
     profilePhaseTransition,
     isLoading, setIsLoading,
@@ -34,7 +29,7 @@ const ChangeName = (props: IChangeNameProps) => {
       const user = await Auth.currentAuthenticatedUser();
       await Auth.updateUserAttributes(user, {name: fields.name});
       const updatedUser = await getUser();
-      dispatch(setCurrentUser(updatedUser.data))
+      setCurrentUser(updatedUser.data);
       profilePhaseTransition('profile');
     } catch (error) {
       onError(error);
@@ -77,10 +72,4 @@ const ChangeName = (props: IChangeNameProps) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    errors: state.errors,
-  }
-}
-
-export default connect(mapStateToProps)(ChangeName);
+export default ChangeName;

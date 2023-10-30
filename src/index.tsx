@@ -1,15 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
 import { Amplify } from 'aws-amplify';
-// import {debugContextDevtool} from 'react-context-devtool';
-
+import {debugContextDevtool} from "react-context-devtool";
+import * as serviceWorker from './serviceWorker';
 import config from './config';
 import './index.scss';
 import App from './App';
-import store from './redux/store';
-import * as serviceWorker from './serviceWorker';
 
 Amplify.configure({
   Auth: {
@@ -30,6 +26,11 @@ Amplify.configure({
         name: 'express',
         endpoint: config.apiExpress.URL,
         region: config.apiExpress.REGION
+      },
+      {
+        name: 'local',
+        endpoint: config.apiLocal.URL,
+        region: config.apiExpress.REGION
       }
     ]
   }
@@ -39,13 +40,11 @@ const container = document.getElementById('root');
 const root = createRoot(container!); // createRoot(container!) if you use TypeScript
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </React.StrictMode>
 );
 
-/*// This causes console errors, so it's commented until needed for debugging
+// /*// This causes console errors, so it's commented until needed for debugging
 debugContextDevtool(container, {
   disable: process.env.REACT_APP_STAGE === 'prod'
 });

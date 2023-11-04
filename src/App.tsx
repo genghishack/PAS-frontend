@@ -9,23 +9,34 @@ import Routes from './components/Routes/Routes';
 import Header from "./components/Header/Header";
 
 import './App.scss';
-import {defaultUserObj, ResourceObj, UserObj} from "./types/App";
+import {defaultSessionObj, defaultUserObj, ResourceObj, SessionObj, UserObj} from "./types/App";
 
 const App = () => {
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isEditor, setIsEditor] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [accessToken, setAccessToken] = useState<string>('');
+  const [isEditor, setIsEditor] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<UserObj>(defaultUserObj);
+  // const [session, setSession] = useState<SessionObj>(defaultSessionObj);
   const [resources, setResources] = useState<ResourceObj[]>([]);
 
   const onLoad = useCallback(async () => {
     try {
-      await Auth.currentSession();
+      const currentSession = await Auth.currentSession();
       setIsAuthenticated(true);
+      const token: string = await currentSession.getAccessToken().getJwtToken();
+      setAccessToken(token);
       if (!currentUser.id) {
-        const {data: user} = await getUser();
-        setCurrentUser(user);
+        const {data: userFromAPI}: {data: UserObj} = await getUser();
+        // setCurrentUser(userFromAPI);
+        setCurrentUser({
+          ...userFromAPI,
+          isEditor: userFromAPI.roles.includes('Editor'),
+          isAdmin: userFromAPI.roles.includes('Admin'),
+          isUser: userFromAPI.roles.includes('User'),
+          isGuest: false
+        });
       }
     } catch (e: any) {
       if (e !== 'No current user' && e.code !== 'UserNotFoundException') {
@@ -58,8 +69,9 @@ const App = () => {
       ) : (
         <>
           <AppContext.Provider value={{
-            isAuthenticated, setIsAuthenticated, isEditor, isAdmin,
-            currentUser, setCurrentUser, resources, setResources
+            isAuthenticated, isEditor, isAdmin,
+            currentUser, resources, accessToken,
+            setIsAuthenticated, setCurrentUser, setResources
           }}>
             <Router>
               <Header/>

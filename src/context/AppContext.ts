@@ -1,25 +1,27 @@
 import {createContext, useContext} from "react";
-import {defaultUserObj, ResourceObj, UserObj} from "../types/App";
+import {defaultSessionObj, defaultUserObj, ResourceObj, SessionObj, UserObj} from "../types/App";
 
 type AppContextType = {
   isAuthenticated: boolean;
-  setIsAuthenticated: Function;
   isEditor: boolean;
   isAdmin: boolean;
+  accessToken: string;
   currentUser: UserObj;
-  setCurrentUser: Function;
   resources: ResourceObj[];
+  setIsAuthenticated: Function;
+  setCurrentUser: Function;
   setResources: Function;
 }
 
 export const AppContext = createContext<AppContextType>({
   isAuthenticated: false,
-  setIsAuthenticated: () => {},
   isEditor: false,
   isAdmin: false,
+  accessToken: '',
   currentUser: defaultUserObj,
-  setCurrentUser: () => {},
   resources: [],
+  setIsAuthenticated: () => {},
+  setCurrentUser: () => {},
   setResources: () => {},
 })
 AppContext.displayName = "AppContext";

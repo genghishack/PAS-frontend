@@ -1,4 +1,4 @@
-import {API, Auth} from "aws-amplify";
+import {API} from "aws-amplify";
 import axios from "axios";
 
 export const getUser = async (id = null) => {
@@ -20,19 +20,13 @@ export const createUser = async (userData: null | any = null) => {
   }
 }
 
-export const listUsers = async () => {
+export const listUsers = async (token: string) => {
+  // const expressUserList = await axios.get('http://localhost:3000/user/', {
+  //   headers: {Authorization: token}
+  // });
+  // console.log({expressUserList});
 
-  const currentSession = await Auth.currentSession();
-  const accessToken = await currentSession.getAccessToken().getJwtToken();
-  // console.log({accessToken})
-  const expressUserList = await axios.get('http://localhost:3000/user/', {
-    headers: {Authorization: accessToken}
-  });
-  console.log({expressUserList});
-
-  const lambdaUserList = await API.get('mapapp', '/user', {});
-  console.log({lambdaUserList});
-  return lambdaUserList;
+  return API.get('mapapp', '/user', {});
 }
 
 export const deleteUser = async (id) => {
@@ -47,7 +41,12 @@ export const disableUser = async (id) => {
   return API.patch('mapapp', `/user/disable/${id}`, {});
 }
 
-export const listRoles = async () => {
+export const listRoles = async (token) => {
+  // const expressRoleList = await axios.get('http://localhost:3000/user/', {
+  //   headers: {Authorization: token}
+  // });
+  // console.log({expressRoleList});
+
   return API.get('mapapp', '/user/roles', {});
 }
 

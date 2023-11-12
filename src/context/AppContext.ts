@@ -1,5 +1,5 @@
 import {createContext, useContext} from "react";
-import {defaultSessionObj, defaultUserObj, ResourceObj, SessionObj, UserObj} from "../types/App";
+import {defaultSessionObj, defaultUserObj, CategoryObj, ProfessionalObj, ResourceObj, SessionObj, UserObj} from "../types/App";
 
 type AppContextType = {
   isAuthenticated: boolean;
@@ -7,10 +7,8 @@ type AppContextType = {
   isAdmin: boolean;
   accessToken: string;
   currentUser: UserObj;
-  resources: ResourceObj[];
   setIsAuthenticated: Function;
   setCurrentUser: Function;
-  setResources: Function;
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -19,10 +17,8 @@ export const AppContext = createContext<AppContextType>({
   isAdmin: false,
   accessToken: '',
   currentUser: defaultUserObj,
-  resources: [],
   setIsAuthenticated: () => {},
   setCurrentUser: () => {},
-  setResources: () => {},
 })
 AppContext.displayName = "AppContext";
 

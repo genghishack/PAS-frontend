@@ -9,7 +9,15 @@ import Routes from './components/Routes/Routes';
 import Header from "./components/Header/Header";
 
 import './App.scss';
-import {defaultSessionObj, defaultUserObj, ResourceObj, SessionObj, UserObj} from "./types/App";
+import {
+  ResponseObj, defaultResponseObj,
+  defaultSessionObj,
+  defaultUserObj,
+  ProfessionalObj,
+  ResourceObj,
+  SessionObj,
+  UserObj, defaultCategoryObj, CategoryObj, defaultProfessionalObj
+} from "./types/App";
 
 const App = () => {
   const [isAuthenticating, setIsAuthenticating] = useState<boolean>(true);
@@ -19,11 +27,12 @@ const App = () => {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<UserObj>(defaultUserObj);
   // const [session, setSession] = useState<SessionObj>(defaultSessionObj);
-  const [resources, setResources] = useState<ResourceObj[]>([]);
 
   const onLoad = useCallback(async () => {
     try {
       const currentSession = await Auth.currentSession();
+      const currentCredentials = await Auth.currentCredentials(); // Gives you IdentityId
+      console.log({currentSession, currentCredentials})
       setIsAuthenticated(true);
       const token: string = await currentSession.getAccessToken().getJwtToken();
       setAccessToken(token);
@@ -69,9 +78,8 @@ const App = () => {
       ) : (
         <>
           <AppContext.Provider value={{
-            isAuthenticated, isEditor, isAdmin,
-            currentUser, resources, accessToken,
-            setIsAuthenticated, setCurrentUser, setResources
+            isAuthenticated, isEditor, isAdmin, currentUser, accessToken,
+            setIsAuthenticated, setCurrentUser
           }}>
             <Router>
               <Header/>

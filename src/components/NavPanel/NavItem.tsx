@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {useResourceContext} from "../../context/ResourceContext";
 import {Button} from "react-bootstrap";
-import {CategoryObj} from "../../types/App";
+import {CategoryObj, ProfessionalObj} from "../../types/App";
 
 interface INavItem {
   category: CategoryObj;
@@ -66,6 +66,20 @@ const NavItem = (props: INavItem) => {
     setShowDeleteResourceModal(true);
   }
 
+  const renderProfessionalInfo = (professional: ProfessionalObj) => (
+    <div key={professional.id} className="professionalInfo">
+      {professional['name_first']} {professional['name_last']}
+    </div>
+  );
+
+  const renderProfessionalList = () => {
+    return (
+      <div className="professionalsList">
+        {professionals.map(professional => renderProfessionalInfo(professional))}
+      </div>
+    )
+  }
+
   return (
     <div className="NavItem">
       <div className="categoryInfo">
@@ -74,19 +88,7 @@ const NavItem = (props: INavItem) => {
             {name_display}
           </Button>
         </div>
-        {(selectedCategory.id && selectedCategory.id === category.id) ? (() => {
-          return (
-            <div className="professionalsList">
-              {professionals.map(professional => {
-                return (
-                  <div key={professional.id} className="professionalInfo">
-                    {professional['name_first']} {professional['name_last']}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })() : null}
+        {(selectedCategory.id && selectedCategory.id === category.id) ? renderProfessionalList() : null}
         {/*<div className="resourceLocation">*/}
         {/*  {resourceLocation()}*/}
         {/*</div>*/}

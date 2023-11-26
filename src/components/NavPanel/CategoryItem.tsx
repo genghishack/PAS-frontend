@@ -8,22 +8,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {useResourceContext} from "../../context/ResourceContext";
 import {Button} from "react-bootstrap";
-import {CategoryObj, ProfessionalObj} from "../../types/App";
+import {CategoryObj} from "../../types/App";
+import ProfessionalList from "./ProfessionalList";
 
-interface INavItem {
+interface ICategoryItem {
   category: CategoryObj;
   userId: string | null;
 }
 
-const NavItem = (props: INavItem) => {
+const CategoryItem = (props: ICategoryItem) => {
   const {category, userId} = props;
-  const {attributes: {name_display}} = category;
+  const {attributes: {nameDisplay}} = category;
   const {
-    professionals,
     selectedCategory,
-    setDisplayedCategory,
     setSelectedCategory,
-    setDisplayedResource,
     setSelectedResource,
     setShowDeleteResourceModal,
     setShowEditResourceModal,
@@ -66,29 +64,15 @@ const NavItem = (props: INavItem) => {
     setShowDeleteResourceModal(true);
   }
 
-  const renderProfessionalInfo = (professional: ProfessionalObj) => (
-    <div key={professional.id} className="professionalInfo">
-      {professional['name_first']} {professional['name_last']}
-    </div>
-  );
-
-  const renderProfessionalList = () => {
-    return (
-      <div className="professionalsList">
-        {professionals.map(professional => renderProfessionalInfo(professional))}
-      </div>
-    )
-  }
-
   return (
     <div className="NavItem">
       <div className="categoryInfo">
         <div className="categoryName">
           <Button variant="link" onClick={handleCategoryClick}>
-            {name_display}
+            {nameDisplay}
           </Button>
         </div>
-        {(selectedCategory.id && selectedCategory.id === category.id) ? renderProfessionalList() : null}
+        {(selectedCategory.id && selectedCategory.id === category.id) ? <ProfessionalList/> : null}
         {/*<div className="resourceLocation">*/}
         {/*  {resourceLocation()}*/}
         {/*</div>*/}
@@ -127,4 +111,4 @@ const NavItem = (props: INavItem) => {
   )
 }
 
-export default NavItem;
+export default CategoryItem;

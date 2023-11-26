@@ -67,8 +67,10 @@ const ResourceContainer = (props: IResourceContainer) => {
 
   const getProfessionalsForCategory = useCallback(async () => {
     try {
+      // console.log('xyz', selectedCategory)
       if (selectedCategory.id) {
         const result = await getCategoryWithProfessionals(accessToken, selectedCategory.id);
+        // console.log('xxx', {result})
         setProfessionals(result.data[0].attributes.professionals);
       }
     } catch (e) {
@@ -86,8 +88,10 @@ const ResourceContainer = (props: IResourceContainer) => {
   }, [getCategories]);
 
   useEffect(() => {
+    console.log('abc', selectedCategory)
+
     getProfessionalsForCategory().then();
-  }, [getProfessionalsForCategory, selectedCategory.id])
+  }, [selectedCategory.id])
 
   return (
     <div className="ResourceContainer">

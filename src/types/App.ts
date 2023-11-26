@@ -39,10 +39,10 @@ export const defaultResponseObj: ResponseObj = {
 
 type CategoryAttributes = {
   id?: number;
-  "name_display": string;
+  nameDisplay: string;
 }
 const defaultCategoryAttributes = {
-  "name_display": '',
+  nameDisplay: '',
 }
 export type CategoryObj = {
   type: string;

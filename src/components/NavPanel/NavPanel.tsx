@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlusSquare} from "@fortawesome/free-solid-svg-icons";
 import { useResourceContext } from '../../context/ResourceContext';
-import NavItem from "./NavItem";
+import CategoryItem from "./CategoryItem";
 
 import './NavPanel.scss';
 import {useAppContext} from "../../context/AppContext";
@@ -38,7 +38,7 @@ const NavPanel = (props: INavPanel) => {
 
       <div className="navItems">
         {categories.map(category => (
-          <NavItem
+          <CategoryItem
             key={category.id}
             category={category}
             userId={userId}

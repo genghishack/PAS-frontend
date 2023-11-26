@@ -49,10 +49,16 @@
           }
         }
 
-        .professionalsList {
-          color: #999;
-          font-size: 12px;
+        .professionalList {
           margin-left: 15px;
+
+          button {
+            text-align: left;
+            width: 100%;
+            padding: 0 0 2px;
+            color: #999;
+            font-size: 12px;
+          }
         }
 
         .resourceLocation {

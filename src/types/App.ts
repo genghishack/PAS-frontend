@@ -60,24 +60,24 @@ export interface ICategoryObj {
 }
 
 type ProfessionalAttributes = {
-  "name_last": string;
-  "name_first": string;
-  "name_prefix": string;
-  "name_suffix": string;
-  "address_city": string;
-  "address_state": string;
-  "address_country": string;
+  nameLast: string;
+  nameFirst: string;
+  namePrefix: string;
+  nameSuffix: string;
+  addressCity: string;
+  addressState: string;
+  addressCountry: string;
   organization: string;
   categories: CategoryAttributes[];
 }
 const defaultProfessionalAttributes = {
-  "name_last": '',
-  "name_first": '',
-  "name_prefix": '',
-  "name_suffix": '',
-  "address_city": '',
-  "address_state": '',
-  "address_country": '',
+  "nameLast": '',
+  "nameFirst": '',
+  "namePrefix": '',
+  "nameSuffix": '',
+  "addressCity": '',
+  "addressState": '',
+  "addressCountry": '',
   organization: '',
   categories: [defaultCategoryAttributes]
 }
@@ -90,6 +90,9 @@ export const defaultProfessionalObj = {
   type: 'professional',
   id: '',
   attributes: defaultProfessionalAttributes
+}
+export interface IProfessionalObj {
+  attributes: ProfessionalAttributes;
 }
 
 export type SessionObj = {

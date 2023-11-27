@@ -3,7 +3,7 @@ import {useAdminContext} from "../../../context/AdminContext";
 import {CategoryObj, ICategoryObj} from "../../../types/App";
 
 interface ICategoryRow {
-  initialCategoryData: any;
+  initialCategoryData: CategoryObj;
   getCategoryList: Function;
 }
 
@@ -24,12 +24,12 @@ const CategoryRow = (props: ICategoryRow) => {
   return (
     <tr className="CategoryRow">
       <td>
-        <div className="categoryCell">
+        <div className="CategoryCell">
           <div className="categorySlug">{nameSlug}</div>
         </div>
       </td>
       <td>
-        <div className="categoryCell">
+        <div className="CategoryCell">
           <div className="categoryDisplayName">{nameDisplay}</div>
         </div>
       </td>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useAppContext} from "../../../context/AppContext";
 import {listProfessionals} from "../../../libs/profLib";
 import {Table} from "react-bootstrap";
+import ProfessionalRow from "./ProfessionalRow";
 
 const ProfessionalAdmin = () => {
   const {accessToken} = useAppContext();
@@ -36,6 +37,15 @@ const ProfessionalAdmin = () => {
           <th>Categories</th>
         </tr>
         </thead>
+        <tbody>
+        {professionalList.map((professional: any) => (
+          <ProfessionalRow
+            key={professional.id}
+            initialProfessionalData={professional}
+            getProfessionalList={getProfessionalList}
+          />
+        ))}
+        </tbody>
       </Table>
     </div>
   )

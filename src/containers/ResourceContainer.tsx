@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
 import {getResources} from "../libs/resourceLib";
-import {ResourceContext, useResourceContext} from '../context/ResourceContext';
+import {ResourceContext} from '../context/ResourceContext';
 import ResourceMap from "../components/ResourceMap/ResourceMap";
 import InfoPanel from "../components/InfoPanel/InfoPanel";
 import NavPanel from '../components/NavPanel/NavPanel';
@@ -12,7 +12,6 @@ import AddResourceModal from "../components/Modal/AddResourceModal";
 
 import './Resource.scss';
 import {useAppContext} from "../context/AppContext";
-import {listProfessionals} from "../libs/profLib";
 import {getCategoryWithProfessionals, listCategories} from "../libs/catLib";
 import {CategoryObj, defaultCategoryObj, defaultProfessionalObj, ProfessionalObj, ResourceObj} from "../types/App";
 

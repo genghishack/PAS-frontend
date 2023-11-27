@@ -39,6 +39,7 @@ export const defaultResponseObj: ResponseObj = {
 
 type CategoryAttributes = {
   id?: number;
+  nameSlug?: string;
   nameDisplay: string;
 }
 const defaultCategoryAttributes = {
@@ -53,6 +54,9 @@ export const defaultCategoryObj = {
   type: 'category',
   id: '',
   attributes: defaultCategoryAttributes
+}
+export interface ICategoryObj {
+  attributes: CategoryAttributes;
 }
 
 type ProfessionalAttributes = {

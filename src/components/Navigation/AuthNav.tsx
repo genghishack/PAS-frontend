@@ -1,25 +1,17 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {Auth} from "aws-amplify";
-import {connect} from "react-redux";
 import {Button, Dropdown, DropdownButton} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
 
 import {useAppContext} from "../../context/AppContext";
-import {setCurrentUser} from "../../redux/actions/currentUser";
 
 import './AuthNav.scss';
+import {defaultUserObj} from "../../types/App";
 
-interface IAuthNav {
-  dispatch: Function;
-  currentUser: any;
-}
-
-const AuthNav = (props: IAuthNav) => {
-  const {dispatch, currentUser} = props;
-
+const AuthNav = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated, isAdmin } = useAppContext();
+  const { isAuthenticated, setIsAuthenticated, isAdmin, currentUser, setCurrentUser } = useAppContext();
 
   const navigateTo = (destination) => {
     navigate(`/${destination}`);
@@ -28,7 +20,7 @@ const AuthNav = (props: IAuthNav) => {
   const handleLogout = async () => {
     await Auth.signOut()
     setIsAuthenticated(false);
-    dispatch(setCurrentUser({}));
+    setCurrentUser(defaultUserObj);
     navigate('/');
   }
 
@@ -77,11 +69,4 @@ const AuthNav = (props: IAuthNav) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.currentUser,
-    errors: state.errors,
-  }
-}
-
-export default connect(mapStateToProps)(AuthNav);
+export default AuthNav;

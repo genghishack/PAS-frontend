@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Table from 'react-bootstrap/Table';
-
 import {listRoles, listUsers} from "../../../libs/userLib";
 import UserRow from "./UserRow";
 import CreateUser from "./CreateUser";
@@ -10,12 +9,12 @@ const UserAdmin = () => {
   const [roles, setRoles] = useState([]);
 
   const getUserList = async () => {
-    const users = await listUsers();
+    const users = await listUsers('');
     setUserList(users.data);
   }
 
   const getRoles = async () => {
-    const cognitoRoles = await listRoles();
+    const cognitoRoles = await listRoles('');
     setRoles(cognitoRoles.data);
   }
 

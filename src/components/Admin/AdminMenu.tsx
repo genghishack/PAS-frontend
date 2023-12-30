@@ -16,8 +16,12 @@ const AdminMenu = () => {
       >User</Button>
       <Button
         variant="link"
-        onClick={() => adminPhaseTransition('resource')}
-      >Resource</Button>
+        onClick={() => adminPhaseTransition('category')}
+      >Category</Button>
+      <Button
+        variant="link"
+        onClick={() => adminPhaseTransition('professional')}
+      >Professional</Button>
     </div>
   )
 }

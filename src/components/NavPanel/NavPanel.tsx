@@ -2,9 +2,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlusSquare} from "@fortawesome/free-solid-svg-icons";
 import { useResourceContext } from '../../context/ResourceContext';
-import NavItem from "./NavItem";
+import CategoryItem from "./CategoryItem";
 
 import './NavPanel.scss';
+import {useAppContext} from "../../context/AppContext";
 
 interface INavPanel {
   resources: any;
@@ -13,9 +14,7 @@ interface INavPanel {
 
 const NavPanel = (props: INavPanel) => {
   const {resources, userId} = props;
-  const {
-    setShowAddResourceModal,
-  } = useResourceContext();
+  const {professionals, categories, setShowAddResourceModal} = useResourceContext();
 
   const handleAddClick = async () => {
     setShowAddResourceModal(true);
@@ -24,7 +23,7 @@ const NavPanel = (props: INavPanel) => {
   return (
     <div className="NavPanel">
       <div className="navHeader">
-        <header>Resources</header>
+        <header>Browse by Category</header>
         {userId ? (
           <div className="navControls">
             <FontAwesomeIcon
@@ -38,10 +37,10 @@ const NavPanel = (props: INavPanel) => {
       </div>
 
       <div className="navItems">
-        {resources.map(resource => (
-          <NavItem
-            key={resource.id}
-            resource={resource}
+        {categories.map(category => (
+          <CategoryItem
+            key={category.id}
+            category={category}
             userId={userId}
           />
         ))}

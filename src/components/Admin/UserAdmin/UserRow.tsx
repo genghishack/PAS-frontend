@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import {connect} from "react-redux";
 
-import {setCurrentUser} from "../../../redux/actions/currentUser";
 import UserEnabledCell from "./UserEnabledCell";
 import UserEmailCell from "./UserEmailCell";
 import UserRolesCell from "./UserRolesCell";
 import UserNameCell from "./UserNameCell";
+import {useAppContext} from "../../../context/AppContext";
 
 interface IUserRow {
   initialUserData: any;
   getUserList: Function;
   roles: string[];
-  currentUser: any;
-  dispatch: Function;
 }
 
 const UserRow = (props: IUserRow) => {
-  const {initialUserData, getUserList, roles, dispatch, currentUser} = props;
+  const {currentUser, setCurrentUser} = useAppContext();
+  const {initialUserData, getUserList, roles} = props;
   const [user, setUser] = useState(initialUserData);
 
   const updateUser = (userData) => {
     if (currentUser.id === userData.id) {
-      dispatch(setCurrentUser(userData));
+      setCurrentUser(userData);
     }
     setUser(userData);
   }
@@ -53,11 +51,4 @@ const UserRow = (props: IUserRow) => {
   )
 }
 
-function mapStateToProps(state: { errors: any; currentUser: any; }) {
-  return {
-    currentUser: state.currentUser,
-    errors: state.errors,
-  };
-}
-
-export default connect(mapStateToProps)(UserRow);
+export default UserRow;

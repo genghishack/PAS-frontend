@@ -14,5 +14,5 @@ export const onError = (error) => {
     message = error.message;
   }
 
-  alert(`${message}`);
+  console.error(`${message}`);
 }

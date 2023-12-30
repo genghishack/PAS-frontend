@@ -1,8 +1,10 @@
 import {API} from "aws-amplify";
+import axios from "axios";
 
 export const getUser = async (id = null) => {
   if (!id) {
-    return API.get('mapapp', '/user/self', {});
+    const userLambda = await API.get('mapapp', '/user/self', {});
+    return userLambda;
   }
   else {
     return API.get('mapapp', `/user/${id}`, {});
@@ -18,7 +20,12 @@ export const createUser = async (userData: null | any = null) => {
   }
 }
 
-export const listUsers = async () => {
+export const listUsers = async (token: string) => {
+  // const expressUserList = await axios.get('http://localhost:3000/user/', {
+  //   headers: {Authorization: token}
+  // });
+  // console.log({expressUserList});
+
   return API.get('mapapp', '/user', {});
 }
 
@@ -34,7 +41,12 @@ export const disableUser = async (id) => {
   return API.patch('mapapp', `/user/disable/${id}`, {});
 }
 
-export const listRoles = async () => {
+export const listRoles = async (token) => {
+  // const expressRoleList = await axios.get('http://localhost:3000/user/', {
+  //   headers: {Authorization: token}
+  // });
+  // console.log({expressRoleList});
+
   return API.get('mapapp', '/user/roles', {});
 }
 

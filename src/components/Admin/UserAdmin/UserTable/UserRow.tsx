@@ -4,7 +4,7 @@ import UserEnabledCell from "./UserEnabledCell";
 import UserEmailCell from "./UserEmailCell";
 import UserRolesCell from "./UserRolesCell";
 import UserNameCell from "./UserNameCell";
-import {useAppContext} from "../../../context/AppContext";
+import {useAppContext} from "../../../../context/AppContext";
 
 interface IUserRow {
   initialUserData: any;

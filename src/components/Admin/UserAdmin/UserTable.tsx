@@ -1,5 +1,5 @@
 import React from 'react';
-import UserRow from "./UserRow";
+import UserRow from "./UserTable/UserRow";
 import {Table} from "react-bootstrap";
 
 interface IUserTable {

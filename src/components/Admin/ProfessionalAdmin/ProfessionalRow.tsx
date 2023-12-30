@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import {IProfessionalObj, ProfessionalObj} from "../../../types/App";
+import {CategoryObj, IProfessionalObj, ProfessionalObj} from "../../../types/App";
+import ProfessionalCategoryCell from "./ProfessionalCategoryCell";
 
 interface IProfessionalRow {
   initialProfessionalData: ProfessionalObj;
+  categoryList: CategoryObj[];
   getProfessionalList: Function;
 }
 
 const ProfessionalRow = (props: IProfessionalRow) => {
-  const {initialProfessionalData} = props;
+  const {initialProfessionalData, categoryList} = props;
   const [professional, setProfessional] = useState<ProfessionalObj>(initialProfessionalData);
 
   const {attributes: {
@@ -18,48 +20,38 @@ const ProfessionalRow = (props: IProfessionalRow) => {
   return (
     <tr className="ProfessionalRow">
       <td>
-        <div className="ProfessionalCell">
-          <div className="professionalNamePrefix">{namePrefix}</div>
-        </div>
-      </td>
-      <td>
-        <div className="ProfessionalCell">
+        <div className="professionalCell">
           <div className="professionalNameFirst">{nameFirst}</div>
         </div>
       </td>
       <td>
-        <div className="ProfessionalCell">
+        <div className="professionalCell">
           <div className="professionalNameLast">{nameLast}</div>
         </div>
       </td>
       <td>
-        <div className="ProfessionalCell">
-          <div className="professionalNameSuffix">{nameSuffix}</div>
-        </div>
-      </td>
-      <td>
-        <div className="ProfessionalCell">
-          <div className="professionalOrganization">{organization}</div>
-        </div>
-      </td>
-      <td>
-        <div className="ProfessionalCell">
+        <div className="professionalCell">
           <div className="professionalAddressCity">{addressCity}</div>
         </div>
       </td>
       <td>
-        <div className="ProfessionalCell">
+        <div className="professionalCell">
           <div className="professionalAddressState">{addressState}</div>
         </div>
       </td>
       <td>
-        <div className="ProfessionalCell">
+        <div className="professionalCell">
           <div className="professionalAddressCountry">{addressCountry}</div>
         </div>
       </td>
       <td>
-        <div className="ProfessionalCell">
-          <div className="professionalCategories"></div>
+        <ProfessionalCategoryCell professional={professional}
+                                  setProfessional={setProfessional}
+                                  categoryList={categoryList}/>
+      </td>
+      <td>
+        <div className="professionalCell">
+          Edit
         </div>
       </td>
     </tr>

@@ -8,16 +8,24 @@ const ProfessionalAdmin = () => {
   const {accessToken} = useAppContext();
 
   const [professionalList, setProfessionalList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
 
   const getProfessionalList = async () => {
     const professionals = await listProfessionals(accessToken);
     console.log({professionals});
     setProfessionalList(professionals.data);
+    setCategoryList(professionals.included.filter((item) => {
+      return item.type === 'category';
+    }));
   }
 
   useEffect(() => {
     getProfessionalList().then();
   }, [])
+
+  useEffect(() => {
+    console.log({categoryList});
+  }, [categoryList])
 
   return (
     <div className="ProfessionalAdmin">
@@ -26,15 +34,13 @@ const ProfessionalAdmin = () => {
       <Table striped bordered hover>
         <thead>
         <tr>
-          <th>Prefix</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Suffix</th>
-          <th>Organization</th>
           <th>City</th>
           <th>State</th>
           <th>Country</th>
           <th>Categories</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +48,7 @@ const ProfessionalAdmin = () => {
           <ProfessionalRow
             key={professional.id}
             initialProfessionalData={professional}
+            categoryList={categoryList}
             getProfessionalList={getProfessionalList}
           />
         ))}

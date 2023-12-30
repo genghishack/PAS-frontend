@@ -40,9 +40,10 @@ export const defaultResponseObj: ResponseObj = {
 type CategoryAttributes = {
   id?: number;
   nameSlug?: string;
+  relationships?: {};
   nameDisplay: string;
 }
-const defaultCategoryAttributes = {
+const defaultCategoryAttributes: CategoryAttributes = {
   nameDisplay: '',
 }
 export type CategoryObj = {
@@ -70,29 +71,39 @@ type ProfessionalAttributes = {
   organization: string;
   categories: CategoryAttributes[];
 }
-const defaultProfessionalAttributes = {
-  "nameLast": '',
-  "nameFirst": '',
-  "namePrefix": '',
-  "nameSuffix": '',
-  "addressCity": '',
-  "addressState": '',
-  "addressCountry": '',
+const defaultProfessionalAttributes: ProfessionalAttributes = {
+  nameLast: '',
+  nameFirst: '',
+  namePrefix: '',
+  nameSuffix: '',
+  addressCity: '',
+  addressState: '',
+  addressCountry: '',
   organization: '',
   categories: [defaultCategoryAttributes]
 }
 export type ProfessionalObj = {
-  type: string;
+  type: 'professional';
   id: string;
   attributes: ProfessionalAttributes;
+  relationships?: {
+    categories: {
+      data: RelationshipObj[]
+    }
+  }
 }
-export const defaultProfessionalObj = {
+export const defaultProfessionalObj: ProfessionalObj = {
   type: 'professional',
   id: '',
   attributes: defaultProfessionalAttributes
 }
 export interface IProfessionalObj {
   attributes: ProfessionalAttributes;
+}
+
+export type RelationshipObj = {
+  id: string;
+  type: string;
 }
 
 export type SessionObj = {

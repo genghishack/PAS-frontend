@@ -1,6 +1,6 @@
-import {ProfessionalObj} from "../../../types/App";
-import {useAppContext} from "../../../context/AppContext";
-import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../libs/profLib";
+import {ProfessionalObj} from "../../../../types/App";
+import {useAppContext} from "../../../../context/AppContext";
+import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/profLib";
 import React from "react";
 import {Button} from "react-bootstrap";
 
@@ -67,14 +67,16 @@ const ProfessionalActionCell = (props: IProfessionalActionCell) => {
 
   return (
     <div className="professionalCell">
-      <div className="options">
-        <div className="option">
-          <Button
-            variant="link"
-            onClick={handleEditProfessional}
-          >Edit</Button>
+      <div className="professionalAction">
+        <div className="options">
+          <div className="option">
+            <Button
+              variant="link"
+              onClick={handleEditProfessional}
+            >Edit</Button>
+          </div>
+          {professional.attributes.active ? renderActive() : renderInactive()}
         </div>
-        {professional.attributes.active ? renderActive() : renderInactive()}
       </div>
     </div>
   )

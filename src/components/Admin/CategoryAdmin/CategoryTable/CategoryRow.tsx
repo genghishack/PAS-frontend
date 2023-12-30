@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {useAdminContext} from "../../../context/AdminContext";
-import {CategoryObj, ICategoryObj} from "../../../types/App";
+import {useAdminContext} from "../../../../context/AdminContext";
+import {CategoryObj, ICategoryObj} from "../../../../types/App";
+import CategoryActionCell from "./CategoryActionCell";
 
 interface ICategoryRow {
   initialCategoryData: CategoryObj;
@@ -9,7 +10,7 @@ interface ICategoryRow {
 
 const CategoryRow = (props: ICategoryRow) => {
   // const {currentCategory, setCurrentCategory} = useAdminContext();
-  const {initialCategoryData} = props;
+  const {initialCategoryData, getCategoryList} = props;
   const [category, setCategory] = useState<CategoryObj>(initialCategoryData);
   // console.log({category})
 
@@ -25,13 +26,18 @@ const CategoryRow = (props: ICategoryRow) => {
     <tr className="CategoryRow">
       <td>
         <div className="CategoryCell">
-          <div className="categorySlug">{nameSlug}</div>
+          <div className="categoryDisplayName">{nameDisplay}</div>
         </div>
       </td>
       <td>
         <div className="CategoryCell">
-          <div className="categoryDisplayName">{nameDisplay}</div>
+          <div className="categoryLabel">{nameSlug}</div>
         </div>
+      </td>
+      <td>
+        <CategoryActionCell category={category}
+                            setCategory={setCategory}
+                            getCategoryList={getCategoryList}/>
       </td>
     </tr>
 

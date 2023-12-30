@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {listCategories} from "../../../libs/catLib";
 import {useAppContext} from "../../../context/AppContext";
-import {Table} from "react-bootstrap";
-import CategoryRow from "./CategoryRow";
 import AddCategory from "./AddCategory";
+import CategoryTable from "./CategoryTable";
 
 const CategoryAdmin = () => {
   const {accessToken} = useAppContext();
@@ -24,23 +23,8 @@ const CategoryAdmin = () => {
     <div className="CategoryAdmin">
       <header>Category admin</header>
       <AddCategory getCategoryList={getCategoryList}/>
-      <Table striped bordered hover>
-        <thead>
-        <tr>
-          <th>Slug</th>
-          <th>Display Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        {categoryList.map((category: any) => (
-          <CategoryRow
-            key={category.id}
-            initialCategoryData={category}
-            getCategoryList={getCategoryList}
-          />
-        ))}
-        </tbody>
-      </Table>
+      <CategoryTable categoryList={categoryList}
+                     getCategoryList={getCategoryList}/>
     </div>
   )
 }

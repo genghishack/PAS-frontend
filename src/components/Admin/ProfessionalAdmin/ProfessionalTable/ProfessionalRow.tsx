@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {CategoryObj, IProfessionalObj, ProfessionalObj} from "../../../types/App";
+import {CategoryObj, IProfessionalObj, ProfessionalObj} from "../../../../types/App";
 import ProfessionalCategoryCell from "./ProfessionalCategoryCell";
 import ProfessionalStatusCell from "./ProfessionalStatusCell";
 import ProfessionalActionCell from "./ProfessionalActionCell";

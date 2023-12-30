@@ -3,6 +3,7 @@ import {listCategories} from "../../../libs/catLib";
 import {useAppContext} from "../../../context/AppContext";
 import {Table} from "react-bootstrap";
 import CategoryRow from "./CategoryRow";
+import AddCategory from "./AddCategory";
 
 const CategoryAdmin = () => {
   const {accessToken} = useAppContext();
@@ -22,7 +23,7 @@ const CategoryAdmin = () => {
   return (
     <div className="CategoryAdmin">
       <header>Category admin</header>
-
+      <AddCategory getCategoryList={getCategoryList}/>
       <Table striped bordered hover>
         <thead>
         <tr>

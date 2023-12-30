@@ -5,6 +5,7 @@ const apiUrl = 'http://localhost:3000';
 export const getProfessional = async (token: string, id: string) => {
   const config = {headers: {Authorization: token}};
   const {data: professional} = await axios.get(`${apiUrl}/professional/${id}`, config);
+  return professional;
 }
 
 export const createProfessional = async (token: string, profData: null | any = null) => {

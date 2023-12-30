@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import {listRoles, listUsers} from "../../../libs/userLib";
 import UserRow from "./UserRow";
 import CreateUser from "./CreateUser";
+import UserTable from "./UserTable";
 
 const UserAdmin = () => {
   const [userList, setUserList] = useState([]);
@@ -27,27 +28,9 @@ const UserAdmin = () => {
     <div className="UserAdmin">
       <header>User admin</header>
       <CreateUser getUserList={getUserList}/>
-      <Table striped bordered hover>
-        <thead>
-        <tr>
-          <th>Email</th>
-          <th>Name</th>
-          <th>Role(s)</th>
-          <th>Status</th>
-          <th>Enabled</th>
-        </tr>
-        </thead>
-        <tbody>
-        {userList.map((user: any) => (
-          <UserRow
-            key={user.id}
-            initialUserData={user}
-            getUserList={getUserList}
-            roles={roles}
-          />
-        ))}
-        </tbody>
-      </Table>
+      <UserTable userList={userList}
+                 getUserList={getUserList}
+                 roles={roles}/>
     </div>
   )
 }

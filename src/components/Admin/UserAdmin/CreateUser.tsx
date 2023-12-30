@@ -41,6 +41,7 @@ const CreateUser = (props: ICreateUser) => {
           <Form.Group controlId="email">
             <Form.Control
               type="email"
+              placeholder="Enter email"
               value={fields.email}
               onChange={handleFieldChange}
             />

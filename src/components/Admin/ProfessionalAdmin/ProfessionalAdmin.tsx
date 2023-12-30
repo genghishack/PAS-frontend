@@ -3,6 +3,7 @@ import {useAppContext} from "../../../context/AppContext";
 import {listProfessionals} from "../../../libs/profLib";
 import {Table} from "react-bootstrap";
 import ProfessionalRow from "./ProfessionalRow";
+import AddProfessional from "./AddProfessional";
 
 const ProfessionalAdmin = () => {
   const {accessToken} = useAppContext();
@@ -30,7 +31,7 @@ const ProfessionalAdmin = () => {
   return (
     <div className="ProfessionalAdmin">
       <header>Professional admin</header>
-
+      <AddProfessional getProfessionalList={getProfessionalList}/>
       <Table striped bordered hover>
         <thead>
         <tr>

@@ -13,8 +13,7 @@ const ProfessionalRow = (props: IProfessionalRow) => {
   const [professional, setProfessional] = useState<ProfessionalObj>(initialProfessionalData);
 
   const {attributes: {
-    nameFirst, nameLast, namePrefix, nameSuffix, organization,
-    addressCity, addressState, addressCountry, categories
+    nameFirst, nameLast, addressCity, addressState, addressCountry
   }}: IProfessionalObj = professional;
 
   return (

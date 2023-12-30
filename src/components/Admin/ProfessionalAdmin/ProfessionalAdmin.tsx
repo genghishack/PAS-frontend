@@ -41,6 +41,7 @@ const ProfessionalAdmin = () => {
           <th>State</th>
           <th>Country</th>
           <th>Categories</th>
+          <th>Status</th>
           <th>Action</th>
         </tr>
         </thead>

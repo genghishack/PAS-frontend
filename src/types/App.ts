@@ -70,6 +70,8 @@ type ProfessionalAttributes = {
   addressCountry: string;
   organization: string;
   categories: CategoryAttributes[];
+  active?: boolean;
+  deleted?: boolean;
 }
 const defaultProfessionalAttributes: ProfessionalAttributes = {
   nameLast: '',

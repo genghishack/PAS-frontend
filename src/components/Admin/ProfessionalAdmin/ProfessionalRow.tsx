@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {CategoryObj, IProfessionalObj, ProfessionalObj} from "../../../types/App";
 import ProfessionalCategoryCell from "./ProfessionalCategoryCell";
+import ProfessionalStatusCell from "./ProfessionalStatusCell";
+import ProfessionalActionCell from "./ProfessionalActionCell";
 
 interface IProfessionalRow {
   initialProfessionalData: ProfessionalObj;
@@ -9,7 +11,7 @@ interface IProfessionalRow {
 }
 
 const ProfessionalRow = (props: IProfessionalRow) => {
-  const {initialProfessionalData, categoryList} = props;
+  const {initialProfessionalData, categoryList, getProfessionalList} = props;
   const [professional, setProfessional] = useState<ProfessionalObj>(initialProfessionalData);
 
   const {attributes: {
@@ -49,9 +51,14 @@ const ProfessionalRow = (props: IProfessionalRow) => {
                                   categoryList={categoryList}/>
       </td>
       <td>
-        <div className="professionalCell">
-          Edit
-        </div>
+        <ProfessionalStatusCell professional={professional}
+                                setProfessional={setProfessional}
+                                getProfessionalList={getProfessionalList}/>
+      </td>
+      <td>
+        <ProfessionalActionCell professional={professional}
+                                setProfessional={setProfessional}
+                                getProfessionalList={getProfessionalList}/>
       </td>
     </tr>
   )

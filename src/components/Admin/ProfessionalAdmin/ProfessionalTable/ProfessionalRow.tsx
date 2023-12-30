@@ -8,10 +8,11 @@ interface IProfessionalRow {
   initialProfessionalData: ProfessionalObj;
   categoryList: CategoryObj[];
   getProfessionalList: Function;
+  setSelectedProfessional: Function;
 }
 
 const ProfessionalRow = (props: IProfessionalRow) => {
-  const {initialProfessionalData, categoryList, getProfessionalList} = props;
+  const {initialProfessionalData, categoryList, getProfessionalList, setSelectedProfessional} = props;
   const [professional, setProfessional] = useState<ProfessionalObj>(initialProfessionalData);
 
   const {attributes: {
@@ -48,17 +49,21 @@ const ProfessionalRow = (props: IProfessionalRow) => {
       <td>
         <ProfessionalCategoryCell professional={professional}
                                   setProfessional={setProfessional}
-                                  categoryList={categoryList}/>
+                                  categoryList={categoryList}
+        />
       </td>
       <td>
         <ProfessionalStatusCell professional={professional}
                                 setProfessional={setProfessional}
-                                getProfessionalList={getProfessionalList}/>
+                                getProfessionalList={getProfessionalList}
+        />
       </td>
       <td>
         <ProfessionalActionCell professional={professional}
                                 setProfessional={setProfessional}
-                                getProfessionalList={getProfessionalList}/>
+                                getProfessionalList={getProfessionalList}
+                                setSelectedProfessional={setSelectedProfessional}
+        />
       </td>
     </tr>
   )

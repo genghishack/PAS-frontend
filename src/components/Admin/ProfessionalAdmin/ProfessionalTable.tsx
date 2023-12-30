@@ -7,10 +7,11 @@ interface IProfessionalTable {
   professionalList: ProfessionalObj[];
   categoryList: CategoryObj[];
   getProfessionalList: Function;
+  setSelectedProfessional: Function;
 }
 
 const ProfessionalTable = (props: IProfessionalTable) => {
-  const {professionalList, categoryList, getProfessionalList} = props;
+  const {professionalList, categoryList, getProfessionalList, setSelectedProfessional} = props;
 
   return (
     <Table striped bordered hover>
@@ -33,6 +34,7 @@ const ProfessionalTable = (props: IProfessionalTable) => {
           initialProfessionalData={professional}
           categoryList={categoryList}
           getProfessionalList={getProfessionalList}
+          setSelectedProfessional={setSelectedProfessional}
         />
       ))}
       </tbody>

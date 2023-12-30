@@ -72,7 +72,24 @@ type ProfessionalAttributes = {
   categories: CategoryAttributes[];
   active?: boolean;
   deleted?: boolean;
+  addressPostalCode?: string;
+  addressStreet1?: string;
+  addressStreet2?: string;
+  barId?: string;
+  comments?: string;
+  email?: string;
+  internalComments?: string;
+  internalReminders?: string;
+  phoneCell?: string;
+  phoneFax?: string;
+  phoneMain?: string;
+  publications?: string;
+  socialMediaIds?: string;
+  speakingTopic?: string;
+  specialties?: string;
+  webUrl?: string;
 }
+
 const defaultProfessionalAttributes: ProfessionalAttributes = {
   nameLast: '',
   nameFirst: '',

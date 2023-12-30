@@ -8,14 +8,15 @@ interface IProfessionalActionCell {
   professional: ProfessionalObj;
   setProfessional: Function;
   getProfessionalList: Function;
+  setSelectedProfessional: Function;
 }
 
 const ProfessionalActionCell = (props: IProfessionalActionCell) => {
-  const {professional, setProfessional, getProfessionalList} = props;
+  const {professional, setProfessional, getProfessionalList, setSelectedProfessional} = props;
   const {accessToken} = useAppContext();
 
   const handleEditProfessional = async () => {
-
+    setSelectedProfessional(professional);
   }
 
   const handleDeleteProfessional = async () => {

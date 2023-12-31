@@ -1,0 +1,67 @@
+.ProfessionalDetails {
+
+  .detailSection {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 20px;
+  }
+
+  .DetailGroup {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 0 0;
+
+    .groupLabel {
+      color: #3f3f3f;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .itemGroup {
+      display: flex;
+      flex-direction: column;
+
+      .DetailItem {
+        display: flex;
+        flex-direction: row;
+
+        .itemLabel {
+          font-weight: bold;
+          text-align: right;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    &.name {
+      .groupLabel, .itemLabel {
+        width: 160px;
+      }
+    }
+
+    &.address {
+      .groupLabel, .itemLabel {
+        width: 100px;
+      }
+    }
+
+    &.contact {
+      .groupLabel, .itemLabel {
+        width: 150px;
+      }
+    }
+
+    &.other {
+      .groupLabel, .itemLabel {
+        width: 150px;
+      }
+    }
+
+    &.notes {
+      .groupLabel, .itemLabel {
+        width: 250px;
+      }
+    }
+  }
+
+}

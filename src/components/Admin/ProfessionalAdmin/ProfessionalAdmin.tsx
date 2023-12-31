@@ -5,6 +5,7 @@ import AddProfessional from "./AddProfessional";
 import ProfessionalTable from "./ProfessionalTable";
 import {defaultProfessionalObj, ProfessionalObj} from "../../../types/App";
 import ProfessionalDetails from "./ProfessionalDetails";
+import {Button} from "react-bootstrap";
 
 const ProfessionalAdmin = () => {
   const {accessToken} = useAppContext();
@@ -45,16 +46,34 @@ const ProfessionalAdmin = () => {
 
   return (
     <div className="ProfessionalAdmin">
-      <header>Professional admin</header>
-      <AddProfessional getProfessionalList={getProfessionalList}/>
       {!selectedProfessional ? (
-        <ProfessionalTable professionalList={professionalList}
-                           categoryList={categoryList}
-                           getProfessionalList={getProfessionalList}
-                           setSelectedProfessional={setSelectedProfessional}
-        />
+        <>
+          <div className="adminHeader">
+            <div className="title">Administration: Professionals</div>
+            <div className="controls">
+              <AddProfessional getProfessionalList={getProfessionalList}/>
+            </div>
+          </div>
+          <ProfessionalTable professionalList={professionalList}
+                             categoryList={categoryList}
+                             getProfessionalList={getProfessionalList}
+                             setSelectedProfessional={setSelectedProfessional}
+          />
+        </>
       ) : (
-        <ProfessionalDetails professional={professionalDetails!}/>
+        <>
+          <div className="adminHeader">
+            <div className="title">Administration: Professionals</div>
+            <div className="controls">
+              <Button
+                variant="link"
+                onClick={() => setSelectedProfessional(null)}
+              >Back to List</Button>
+
+            </div>
+          </div>
+          <ProfessionalDetails professional={professionalDetails!}/>
+        </>
       )}
     </div>
   )

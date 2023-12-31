@@ -47,7 +47,9 @@ const ProfessionalDetails = (props: IProfessionalDetails) => {
             {label: 'Country', value: addressCountry},
             {label: 'Postal Code', value: addressPostalCode},
           ]}/>
+        </div>
 
+        <div className="detailSection">
           <DetailGroup label="contact" items={[
             {label: 'Email', value: email},
             {label: 'Phone (main)', value: phoneMain},
@@ -56,9 +58,7 @@ const ProfessionalDetails = (props: IProfessionalDetails) => {
             {label: 'Website', value: webUrl},
             {label: 'Social Media', value: socialMediaIds}
           ]}/>
-        </div>
 
-        <div className="detailSection">
           <DetailGroup label="other" items={[
             {label: 'Organization', value: organization},
             {label: 'Bar ID', value: barId},
@@ -66,7 +66,9 @@ const ProfessionalDetails = (props: IProfessionalDetails) => {
             {label: 'Speaking Topic', value: speakingTopic},
             {label: 'Specialties', value: specialties},
           ]}/>
+        </div>
 
+        <div className="detailSection">
           <DetailGroup label="notes" items={[
             {label: "Comments (public)", value: comments},
             {label: "Internal Comments (private)", value: internalComments},

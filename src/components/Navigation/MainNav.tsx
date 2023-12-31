@@ -8,7 +8,7 @@ const MainNav = () => {
 
   return (
     <div className="Nav">
-      <NavItem label="Resource Map" pathname="/" />
+      <NavItem label="Find Professionals" pathname="/" />
       {isAuthenticated ? (
         <NavItem label="My Resources" pathname={`/${currentUser.id}`} />
       ) : null}

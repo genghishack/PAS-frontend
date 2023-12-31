@@ -2,8 +2,9 @@
   .Admin {
     width: 80%;
     margin: 10px auto;
-    padding: 60px 0;
+    padding: 0;
     display: flex;
+    font-size: 14px;
 
     header {
       font-size: 25px;
@@ -13,21 +14,6 @@
 
     .inline {
       display: flex;
-    }
-
-    .AdminMenu {
-      display: flex;
-      flex-direction: column;
-      padding: 65px 20px 20px;
-
-      .btn {
-        text-align: left;
-      }
-    }
-
-    .AdminContent {
-      padding: 20px;
-      width: 100%;
     }
 
     .success {
@@ -81,6 +67,21 @@
       }
     }
 
+    .AdminMenu {
+      display: flex;
+      flex-direction: column;
+      padding: 65px 20px 20px;
+
+      .btn {
+        text-align: left;
+      }
+    }
+
+    .AdminContent {
+      padding: 20px;
+      width: 100%;
+    }
+
     .UserAdmin {
       .userCell {
         display: flex;
@@ -104,10 +105,39 @@
     }
 
     .ProfessionalAdmin {
+      .adminHeader {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 5px;
+
+        .title {
+          font-size: 25px;
+        }
+
+        .controls {
+          font-size: 16px;
+        }
+      }
+
       .professionalCell {
         display: flex;
         justify-content: space-between;
+
+        .option {
+          .btn {
+            height: 15px;
+            font-size: 13px;
+            padding: 0;
+            border: 0;
+            vertical-align: unset;
+
+            &:focus {
+              box-shadow: none;
+            }
+          }
+        }
       }
     }
+
   }
 }

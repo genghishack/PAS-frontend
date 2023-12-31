@@ -1,6 +1,6 @@
-import {ProfessionalObj} from "../../../types/App";
-import {useAppContext} from "../../../context/AppContext";
-import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../libs/profLib";
+import {ProfessionalObj} from "../../../../types/App";
+import {useAppContext} from "../../../../context/AppContext";
+import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/profLib";
 import React from "react";
 import {Button} from "react-bootstrap";
 
@@ -8,14 +8,15 @@ interface IProfessionalActionCell {
   professional: ProfessionalObj;
   setProfessional: Function;
   getProfessionalList: Function;
+  setSelectedProfessional: Function;
 }
 
 const ProfessionalActionCell = (props: IProfessionalActionCell) => {
-  const {professional, setProfessional, getProfessionalList} = props;
+  const {professional, setProfessional, getProfessionalList, setSelectedProfessional} = props;
   const {accessToken} = useAppContext();
 
   const handleEditProfessional = async () => {
-
+    setSelectedProfessional(professional);
   }
 
   const handleDeleteProfessional = async () => {
@@ -67,14 +68,16 @@ const ProfessionalActionCell = (props: IProfessionalActionCell) => {
 
   return (
     <div className="professionalCell">
-      <div className="options">
-        <div className="option">
-          <Button
-            variant="link"
-            onClick={handleEditProfessional}
-          >Edit</Button>
+      <div className="professionalAction">
+        <div className="options">
+          <div className="option">
+            <Button
+              variant="link"
+              onClick={handleEditProfessional}
+            >Edit</Button>
+          </div>
+          {professional.attributes.active ? renderActive() : renderInactive()}
         </div>
-        {professional.attributes.active ? renderActive() : renderInactive()}
       </div>
     </div>
   )

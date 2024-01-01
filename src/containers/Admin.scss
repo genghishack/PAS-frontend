@@ -30,12 +30,26 @@
       display: flex;
     }
 
+    .column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
     .success {
       color: #0f9d58;
     }
 
     .failure {
       color: #c5221f;
+    }
+
+    .bold {
+      font-weight: bold;
     }
 
     .chips {
@@ -92,6 +106,19 @@
         &:focus {
           box-shadow: none;
         }
+      }
+    }
+
+    .indicator {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+
+      .icon {
+        margin: 0 5px 0 0;
+      }
+      .label {
+        position: relative;
       }
     }
 

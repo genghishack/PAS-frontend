@@ -24,59 +24,20 @@ const ProfessionalActionCell = (props: IProfessionalActionCell) => {
     getProfessionalList();
   }
 
-  const handleActivateProfessional = async () => {
-    const updatedProfessional = await activateProfessional(accessToken, professional.id);
-    setProfessional(updatedProfessional);
-  }
-
-  const handleDeactivateProfessional = async () => {
-    const updatedProfessional = await deactivateProfessional(accessToken, professional.id);
-    setProfessional(updatedProfessional);
-  }
-
-  const renderActive = () => {
-    return (
-      <>
+  return (
+    <div className="ProfessionalCell action column">
+      <div className="options">
         <div className="option">
           <Button
             variant="link"
-            onClick={handleDeactivateProfessional}
-          >Deactivate</Button>
-        </div>
-      </>
-    )
-  }
-
-  const renderInactive = () => {
-    return (
-      <>
-        <div className="option">
-          <Button
-            variant="link"
-            onClick={handleActivateProfessional}
-          >Activate</Button>
+            onClick={handleEditProfessional}
+          >Edit</Button>
         </div>
         <div className="option">
           <Button
             variant="link"
             onClick={handleDeleteProfessional}
           >Delete</Button>
-        </div>
-      </>
-    )
-  }
-
-  return (
-    <div className="professionalCell">
-      <div className="professionalAction">
-        <div className="options">
-          <div className="option">
-            <Button
-              variant="link"
-              onClick={handleEditProfessional}
-            >Edit</Button>
-          </div>
-          {professional.attributes.active ? renderActive() : renderInactive()}
         </div>
       </div>
     </div>

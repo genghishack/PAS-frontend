@@ -9,17 +9,11 @@ import {useAppContext} from "../../../../context/AppContext";
 interface IProfessionalStatusCell {
   professional: ProfessionalObj;
   setProfessional: Function;
-  getProfessionalList: Function;
 }
 
 const ProfessionalStatusCell = (props: IProfessionalStatusCell) => {
-  const {professional, setProfessional, getProfessionalList} = props;
+  const {professional, setProfessional} = props;
   const {accessToken} = useAppContext();
-
-  const handleDeleteProfessional = async () => {
-    await deleteProfessional(accessToken, professional.id)
-    getProfessionalList();
-  }
 
   const handleActivateProfessional = async () => {
     const updatedProfessional = await activateProfessional(accessToken, professional.id);
@@ -31,35 +25,33 @@ const ProfessionalStatusCell = (props: IProfessionalStatusCell) => {
     setProfessional(updatedProfessional);
   }
 
-  const renderActive = () => {
-    return (
-      <>
-        <FontAwesomeIcon
-          className="success"
-          icon={faCheckCircle}
-          title="active"
-        />
-        <div className="label">Active</div>
-      </>
-    )
-  }
-
-  const renderInactive = () => {
-    return (
-      <>
-        <FontAwesomeIcon
-          className="failure"
-          icon={faTimesCircle}
-          title="inactive"
-        />
-        <div className="label">Inactive</div>
-      </>
-    )
-  }
-
   return (
-    <div className="professionalCell">
-      {professional.attributes.active ? renderActive() : renderInactive()}
+    <div className="ProfessionalCell status column">
+      {professional.attributes.active ? (
+        <>
+          <div className="indicator">
+            <div className="label success bold">Active</div>
+          </div>
+          <div className="option">
+            <Button
+              variant="link"
+              onClick={handleDeactivateProfessional}
+            >Deactivate</Button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="indicator">
+            <div className="label failure bold">Inactive</div>
+          </div>
+          <div className="option">
+            <Button
+              variant="link"
+              onClick={handleActivateProfessional}
+            >Activate</Button>
+          </div>
+        </>
+      )}
     </div>
   )
 }

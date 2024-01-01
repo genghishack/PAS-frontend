@@ -21,8 +21,12 @@ const CategoryAdmin = () => {
 
   return (
     <div className="CategoryAdmin">
-      <header>Category admin</header>
-      <AddCategory getCategoryList={getCategoryList}/>
+      <div className="adminHeader">
+        <div className="title">Administration: Categories</div>
+        <div className="controls">
+          <AddCategory getCategoryList={getCategoryList}/>
+        </div>
+      </div>
       <CategoryTable categoryList={categoryList}
                      getCategoryList={getCategoryList}/>
     </div>

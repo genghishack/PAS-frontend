@@ -6,10 +6,24 @@
     display: flex;
     font-size: 14px;
 
-    header {
-      font-size: 25px;
-      text-align: left;
-      padding-bottom: 15px;
+    .adminHeader {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 10px;
+
+      .title {
+        font-size: 25px;
+      }
+
+      .controls {
+        font-size: 16px;
+
+        .label {
+          position: relative;
+          top: 7px;
+        }
+      }
     }
 
     .inline {
@@ -67,6 +81,20 @@
       }
     }
 
+    .option {
+      .btn {
+        height: 15px;
+        font-size: 13px;
+        padding: 0;
+        border: 0;
+        vertical-align: unset;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
     .AdminMenu {
       display: flex;
       flex-direction: column;
@@ -86,56 +114,13 @@
       .userCell {
         display: flex;
         justify-content: space-between;
-
-        .option {
-          .btn {
-            height: 15px;
-            font-size: 13px;
-            padding: 0;
-            border: 0;
-            vertical-align: unset;
-
-            &:focus {
-              box-shadow: none;
-            }
-          }
-        }
-
       }
     }
 
     .ProfessionalAdmin {
-      .adminHeader {
+      .ProfessionalCell {
         display: flex;
         justify-content: space-between;
-        margin: 0 0 5px;
-
-        .title {
-          font-size: 25px;
-        }
-
-        .controls {
-          font-size: 16px;
-        }
-      }
-
-      .professionalCell {
-        display: flex;
-        justify-content: space-between;
-
-        .option {
-          .btn {
-            height: 15px;
-            font-size: 13px;
-            padding: 0;
-            border: 0;
-            vertical-align: unset;
-
-            &:focus {
-              box-shadow: none;
-            }
-          }
-        }
       }
     }
 

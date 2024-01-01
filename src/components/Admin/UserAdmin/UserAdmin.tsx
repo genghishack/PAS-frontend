@@ -26,8 +26,12 @@ const UserAdmin = () => {
 
   return (
     <div className="UserAdmin">
-      <header>User admin</header>
-      <CreateUser getUserList={getUserList}/>
+      <div className="adminHeader">
+        <div className="title">Administration: Users</div>
+        <div className="controls">
+          <CreateUser getUserList={getUserList}/>
+        </div>
+      </div>
       <UserTable userList={userList}
                  getUserList={getUserList}
                  roles={roles}/>

@@ -32,7 +32,7 @@ const ProfessionalCategoryCell = (props: IProfessionalCategoryCell) => {
     setCategorySuggestions(suggestions);
   }, [categoryList, professional.relationships!.categories.data])
 
-  const handleAddCategory = async(category: CategoryObj) => {
+  const handleAddCategory = async (category: CategoryObj) => {
     const updatedProfessional = await addProfessionalToCategory(accessToken, professional.id, category.id);
     setProfessional(updatedProfessional);
   }
@@ -43,9 +43,8 @@ const ProfessionalCategoryCell = (props: IProfessionalCategoryCell) => {
   }
 
   return (
-    <div className="ProfessionalCell">
-      <div className="professionalCategories">
-        <div className="chips">
+    <div className="ProfessionalCell categories">
+      <div className="chips">
         {professional.relationships!.categories!.data.map((relObj: RelationshipObj, idx: number) => {
           const categoryId = relObj.id;
           const [categoryObj] = categoryList.filter((catObj: CategoryObj) => {
@@ -54,33 +53,32 @@ const ProfessionalCategoryCell = (props: IProfessionalCategoryCell) => {
 
           return (
             <span className="chip" key={idx}>
-              <span className="chip-value">{categoryObj.attributes.nameDisplay}</span>
-              <button
-                type="button"
-                className="chip-delete-button"
-                onClick={() => handleRemoveCategory(categoryObj)}
-              >x</button>
-            </span>
+            <span className="chip-value">{categoryObj.attributes.nameDisplay}</span>
+            <button
+              type="button"
+              className="chip-delete-button"
+              onClick={() => handleRemoveCategory(categoryObj)}
+            >x</button>
+          </span>
           )
         })}
-        </div>
-        <div className="option">
-          <Dropdown>
-            <DropdownButton
-              disabled={!categorySuggestions.length}
-              className="addCategoryMenu"
-              title="add category"
-              variant="link"
-            >
-              {categorySuggestions.map((category: CategoryObj) => (
-                <DropdownItem
-                  key={category.id}
-                  onClick={() => handleAddCategory(category)}
-                >{category.attributes.nameDisplay}</DropdownItem>
-              ))}
-            </DropdownButton>
-          </Dropdown>
-        </div>
+      </div>
+      <div className="option">
+        <Dropdown>
+          <DropdownButton
+            disabled={!categorySuggestions.length}
+            className="addCategoryMenu"
+            title="add category"
+            variant="link"
+          >
+            {categorySuggestions.map((category: CategoryObj) => (
+              <DropdownItem
+                key={category.id}
+                onClick={() => handleAddCategory(category)}
+              >{category.attributes.nameDisplay}</DropdownItem>
+            ))}
+          </DropdownButton>
+        </Dropdown>
       </div>
     </div>
   )

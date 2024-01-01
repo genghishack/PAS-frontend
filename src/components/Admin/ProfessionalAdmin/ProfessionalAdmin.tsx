@@ -44,37 +44,46 @@ const ProfessionalAdmin = () => {
     console.log({categoryList});
   }, [categoryList])
 
-  return (
-    <div className="ProfessionalAdmin">
-      {!selectedProfessional ? (
-        <>
-          <div className="adminHeader">
-            <div className="title">Administration: Professionals</div>
-            <div className="controls">
-              <AddProfessional getProfessionalList={getProfessionalList}/>
-            </div>
-          </div>
+  const renderControls = () => {
+    return (
+      <>
+        {selectedProfessional ? (
+          <Button
+            variant="link"
+            onClick={() => setSelectedProfessional(null)}
+          >Back to List</Button>
+        ) : (
+          <AddProfessional getProfessionalList={getProfessionalList}/>
+        )}
+      </>
+    );
+  }
+
+  const renderContent = () => {
+    return (
+      <>
+        {selectedProfessional ? (
+          <ProfessionalDetails professional={professionalDetails!}/>
+        ) : (
           <ProfessionalTable professionalList={professionalList}
                              categoryList={categoryList}
                              getProfessionalList={getProfessionalList}
                              setSelectedProfessional={setSelectedProfessional}
           />
-        </>
-      ) : (
-        <>
-          <div className="adminHeader">
-            <div className="title">Administration: Professionals</div>
-            <div className="controls">
-              <Button
-                variant="link"
-                onClick={() => setSelectedProfessional(null)}
-              >Back to List</Button>
+        )}
+      </>
+    );
+  }
 
-            </div>
-          </div>
-          <ProfessionalDetails professional={professionalDetails!}/>
-        </>
-      )}
+  return (
+    <div className="ProfessionalAdmin">
+      <div className="adminHeader">
+        <div className="title">Administration: Professionals</div>
+        <div className="controls">
+          {renderControls()}
+        </div>
+      </div>
+      {renderContent()}
     </div>
   )
 }

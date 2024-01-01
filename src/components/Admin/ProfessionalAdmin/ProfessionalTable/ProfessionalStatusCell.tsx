@@ -9,11 +9,10 @@ import {useAppContext} from "../../../../context/AppContext";
 interface IProfessionalStatusCell {
   professional: ProfessionalObj;
   setProfessional: Function;
-  getProfessionalList: Function;
 }
 
 const ProfessionalStatusCell = (props: IProfessionalStatusCell) => {
-  const {professional, setProfessional, getProfessionalList} = props;
+  const {professional, setProfessional} = props;
   const {accessToken} = useAppContext();
 
   const handleActivateProfessional = async () => {

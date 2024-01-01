@@ -22,27 +22,27 @@ const ProfessionalRow = (props: IProfessionalRow) => {
   return (
     <tr className="ProfessionalRow">
       <td>
-        <div className="professionalCell">
+        <div className="ProfessionalCell nameFirst row">
           <div className="professionalNameFirst">{nameFirst}</div>
         </div>
       </td>
       <td>
-        <div className="professionalCell">
+        <div className="ProfessionalCell nameLast row">
           <div className="professionalNameLast">{nameLast}</div>
         </div>
       </td>
       <td>
-        <div className="professionalCell">
+        <div className="ProfessionalCell city row">
           <div className="professionalAddressCity">{addressCity}</div>
         </div>
       </td>
       <td>
-        <div className="professionalCell">
+        <div className="ProfessionalCell state row">
           <div className="professionalAddressState">{addressState}</div>
         </div>
       </td>
       <td>
-        <div className="professionalCell">
+        <div className="ProfessionalCell country row">
           <div className="professionalAddressCountry">{addressCountry}</div>
         </div>
       </td>
@@ -55,7 +55,6 @@ const ProfessionalRow = (props: IProfessionalRow) => {
       <td>
         <ProfessionalStatusCell professional={professional}
                                 setProfessional={setProfessional}
-                                getProfessionalList={getProfessionalList}
         />
       </td>
       <td>

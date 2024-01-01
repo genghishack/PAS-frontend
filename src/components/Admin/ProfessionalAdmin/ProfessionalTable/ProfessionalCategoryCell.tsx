@@ -43,7 +43,7 @@ const ProfessionalCategoryCell = (props: IProfessionalCategoryCell) => {
   }
 
   return (
-    <div className="ProfessionalCell categories">
+    <div className="ProfessionalCell categories row">
       <div className="chips">
         {professional.relationships!.categories!.data.map((relObj: RelationshipObj, idx: number) => {
           const categoryId = relObj.id;

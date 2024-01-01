@@ -25,21 +25,19 @@ const ProfessionalActionCell = (props: IProfessionalActionCell) => {
   }
 
   return (
-    <div className="professionalCell">
-      <div className="professionalAction">
-        <div className="options">
-          <div className="option">
-            <Button
-              variant="link"
-              onClick={handleEditProfessional}
-            >Edit</Button>
-          </div>
-          <div className="option">
-            <Button
-              variant="link"
-              onClick={handleDeleteProfessional}
-            >Delete</Button>
-          </div>
+    <div className="ProfessionalCell action column">
+      <div className="options">
+        <div className="option">
+          <Button
+            variant="link"
+            onClick={handleEditProfessional}
+          >Edit</Button>
+        </div>
+        <div className="option">
+          <Button
+            variant="link"
+            onClick={handleDeleteProfessional}
+          >Delete</Button>
         </div>
       </div>
     </div>

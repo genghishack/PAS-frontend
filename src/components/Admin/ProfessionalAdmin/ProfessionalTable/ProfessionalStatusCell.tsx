@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import {Button} from "react-bootstrap";
 import {ProfessionalObj} from "../../../../types/App";
-import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/profLib";
+import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/professional";
 import {useAppContext} from "../../../../context/AppContext";
 
 interface IProfessionalStatusCell {

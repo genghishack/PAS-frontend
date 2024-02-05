@@ -3,8 +3,8 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {Auth} from 'aws-amplify';
 
 import {AppContext} from "./context/AppContext";
-import {onError} from "./libs/errorLib";
-import {getUser} from './libs/userLib';
+import {onError} from "./libs/error";
+import {getUser} from './libs/user';
 import Routes from './components/Routes/Routes';
 import Header from "./components/Header/Header";
 

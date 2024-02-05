@@ -3,9 +3,9 @@ import {Button, Form, Modal} from 'react-bootstrap';
 import ResourceFields from "../Form/ResourceFields";
 import LoaderButton from "../LoaderButton/LoaderButton";
 import {useResourceContext} from "../../context/ResourceContext";
-import {useFormFields} from "../../libs/hooksLib";
-import {createResource} from "../../libs/resourceLib";
-import {onError} from "../../libs/errorLib";
+import {useFormFields} from "../../libs/hooks";
+import {createResource} from "../../libs/resource";
+import {onError} from "../../libs/error";
 
 const AddResourceModal = () => {
   const {

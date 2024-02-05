@@ -1,6 +1,6 @@
 import {ProfessionalObj} from "../../../../types/App";
 import {useAppContext} from "../../../../context/AppContext";
-import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/profLib";
+import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/professional";
 import React from "react";
 import {Button} from "react-bootstrap";
 

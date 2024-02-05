@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {CategoryObj, ProfessionalObj, RelationshipObj} from "../../../../types/App";
-import {addProfessionalToCategory, removeProfessionalFromCategory} from "../../../../libs/profLib";
+import {addProfessionalToCategory, removeProfessionalFromCategory} from "../../../../libs/professional";
 import {useAppContext} from "../../../../context/AppContext";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";

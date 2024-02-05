@@ -20,6 +20,8 @@ export const defaultUserObj: UserObj = {
   isGuest: true,
 }
 
+export type MapMarkerObj = [number, number];
+
 export type ResourceObj = any;
 
 type ResponseDataObj = {
@@ -60,7 +62,7 @@ export interface ICategoryObj {
   attributes: CategoryAttributes;
 }
 
-type ProfessionalAttributes = {
+export type ProfessionalAttributes = {
   nameLast: string;
   nameFirst: string;
   namePrefix: string;
@@ -88,6 +90,7 @@ type ProfessionalAttributes = {
   speakingTopic?: string;
   specialties?: string;
   webUrl?: string;
+  geojson: string;
 }
 
 const defaultProfessionalAttributes: ProfessionalAttributes = {
@@ -99,8 +102,13 @@ const defaultProfessionalAttributes: ProfessionalAttributes = {
   addressState: '',
   addressCountry: '',
   organization: '',
-  categories: [defaultCategoryAttributes]
+  categories: [defaultCategoryAttributes],
+  geojson: '[]',
 }
+export interface IProfessionalAttributes {
+  geojson: string;
+}
+
 export type ProfessionalObj = {
   type: 'professional';
   id: string;

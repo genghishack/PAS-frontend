@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {useFormFields} from "../libs/hooksLib";
+import {useFormFields} from "../libs/hooks";
 import {ProfileContext} from '../context/ProfileContext';
 import Profile from "../components/User/Profile";
 import ChangeEmail from "../components/User/ChangeEmail";

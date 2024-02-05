@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useAppContext} from "../../../context/AppContext";
-import {getProfessional, listProfessionals} from "../../../libs/profLib";
+import {getProfessional, listProfessionals} from "../../../libs/professional";
 import AddProfessional from "./AddProfessional";
 import ProfessionalTable from "./ProfessionalTable";
 import {defaultProfessionalObj, ProfessionalObj} from "../../../types/App";

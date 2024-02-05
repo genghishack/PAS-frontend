@@ -4,9 +4,9 @@ import {useNavigate} from "react-router-dom";
 
 import {AuthContext} from "../context/AuthContext";
 import {useAppContext} from '../context/AppContext';
-import {useFormFields, useIsMountedRef} from "../libs/hooksLib";
-import {getUser} from "../libs/userLib";
-import {onError} from "../libs/errorLib";
+import {useFormFields, useIsMountedRef} from "../libs/hooks";
+import {getUser} from "../libs/user";
+import {onError} from "../libs/error";
 import Signup from "../components/Auth/Signup";
 import SignupConfirmation from "../components/Auth/SignupConfirmation";
 import ResetPassword from "../components/Auth/ResetPassword";

@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
-import {getResources} from "../libs/resourceLib";
+import {getResources} from "../libs/resource";
 import {ResourceContext} from '../context/ResourceContext';
 import ResourceMap from "../components/ResourceMap/ResourceMap";
 import InfoPanel from "../components/InfoPanel/InfoPanel";
@@ -12,8 +12,15 @@ import AddResourceModal from "../components/Modal/AddResourceModal";
 
 import './Resource.scss';
 import {useAppContext} from "../context/AppContext";
-import {getCategoryWithProfessionals, listCategories} from "../libs/catLib";
-import {CategoryObj, defaultCategoryObj, defaultProfessionalObj, ProfessionalObj, ResourceObj} from "../types/App";
+import {getCategoryWithProfessionals, listCategories} from "../libs/category";
+import {
+  CategoryObj,
+  defaultCategoryObj,
+  defaultProfessionalObj, IProfessionalAttributes,
+  MapMarkerObj,
+  ProfessionalObj,
+  ResourceObj
+} from "../types/App";
 
 interface IResourceContainer {
   match?: any;
@@ -31,6 +38,7 @@ const ResourceContainer = (props: IResourceContainer) => {
   const [selectedResource, setSelectedResource] = useState({});
 
   const [resources, setResources] = useState<ResourceObj[]>([]);
+  const [mapMarkers, setMapMarkers] = useState<MapMarkerObj[]>([]);
   const [professionals, setProfessionals] = useState<ProfessionalObj[]>([defaultProfessionalObj]);
   const [categories, setCategories] = useState<CategoryObj[]>([defaultCategoryObj]);
 
@@ -69,8 +77,8 @@ const ResourceContainer = (props: IResourceContainer) => {
       // console.log('xyz', selectedCategory)
       if (selectedCategory.id) {
         const result = await getCategoryWithProfessionals(accessToken, selectedCategory.id);
-        // console.log('xxx', {result})
-        setProfessionals(result.data[0].attributes.professionals);
+        console.log('xxx', {result})
+        // setProfessionals(result.data[0].attributes.professionals);
       }
     } catch (e) {
       // setError(e);
@@ -78,19 +86,29 @@ const ResourceContainer = (props: IResourceContainer) => {
   }, [accessToken, selectedCategory.id]);
 
   //@ts-ignore
-  useEffect(() => {
-    getMapMarkers().then();
-  }, [getMapMarkers]);
+  // useEffect(() => {
+  //   getMapMarkers().then();
+  // }, [getMapMarkers]);
 
   useEffect(() => {
     getCategories().then();
   }, [getCategories]);
 
   useEffect(() => {
-    console.log('abc', selectedCategory)
-
+    console.log({selectedCategory})
     getProfessionalsForCategory().then();
   }, [selectedCategory.id])
+
+  useEffect(() => {
+    if (professionals.length) {
+      console.log({professionals});
+      const latLngs = professionals.map((professional: ProfessionalObj) => {
+        const {geojson}: IProfessionalAttributes = professional.attributes;
+          const parsedGeojson = JSON.parse(geojson);
+
+      });
+    }
+  }, [professionals])
 
   return (
     <div className="ResourceContainer">

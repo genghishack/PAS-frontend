@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckSquare, faPlusSquare, faTimes} from "@fortawesome/free-solid-svg-icons";
-import {useFormFields} from "../../../libs/hooksLib";
-import {createCategory} from "../../../libs/catLib";
+import {useFormFields} from "../../../libs/hooks";
+import {createCategory} from "../../../libs/category";
 import {useAppContext} from "../../../context/AppContext";
 
 interface IAddCategory {

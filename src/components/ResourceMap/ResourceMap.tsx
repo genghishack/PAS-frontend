@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {continentalViewport} from '../../libs/mapLib';
+import {continentalViewport} from '../../libs/map';
 import Map from '../Map';
 
 import './ResourceMap.scss';

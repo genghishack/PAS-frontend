@@ -41,7 +41,7 @@ const defaultProfessionalAttributes: ProfessionalAttributes = {
   addressCountry: '',
   organization: '',
   categories: [defaultCategoryAttributes],
-  geojson: '[]',
+  geojson: '{}',
 }
 
 export interface IProfessionalAttributes {

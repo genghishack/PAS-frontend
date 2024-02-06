@@ -24,32 +24,32 @@ const Map = (props: IMapProps) => {
   const renderProfessionals = () => {
     return (
       <>
-        {professionals && professionals.map((marker) => {
+        {professionals && professionals[0].id && professionals.map((marker) => {
           const {geojson, nameLast, nameFirst, addressCity, addressState, addressCountry} = marker.attributes;
           const parsedGeojson = JSON.parse(geojson);
           const {coordinates} = parsedGeojson;
           const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
           console.log({latlng});
 
-          // return(
-          //   <></>
-          // )
-
-          return (
-            <Marker key={marker.id} position={latlng}>
-               <Popup>
-                 <div className="markerName">
-                   <span className="nameFirst">{nameFirst}</span>
-                   <span className="nameLast">{nameLast}</span>
-                 </div>
-                 <div className="markerLocation">
-                   <span className="addressCity">{addressCity}</span>,
-                   <span className="addressState">{addressState}</span>,
-                   <span className="addressCountry">{addressCountry}</span>
-                 </div>
-               </Popup>
-             </Marker>
-           )
+          if (marker.id !== '') {
+            return (
+              <Marker key={marker.id} position={latlng}>
+                <Popup>
+                  <div className="markerName">
+                    <span className="nameFirst">{nameFirst}</span>
+                    <span className="nameLast">{nameLast}</span>
+                  </div>
+                  <div className="markerLocation">
+                    <span className="addressCity">{addressCity}</span>,
+                    <span className="addressState">{addressState}</span>,
+                    <span className="addressCountry">{addressCountry}</span>
+                  </div>
+                </Popup>
+              </Marker>
+            )
+          } else {
+            return null;
+          }
         })}
       </>
     )
@@ -71,19 +71,17 @@ const Map = (props: IMapProps) => {
   }
 
   return (
-      <MapContainer
-          center={[latitude, longitude]}
-          zoom={zoom}
-          zoomSnap={0.1}
-          scrollWheelZoom={true}
-          style={{ width: '100%', height: 'calc(100vh - 70px)' }}
-      >
-        <TileLayer
-            url={tileUrl}
-        />
-        {renderMarkers()}
-        {/*{renderProfessionals()}*/}
-      </MapContainer>
+    <MapContainer
+      center={[latitude, longitude]}
+      zoom={zoom}
+      zoomSnap={0.1}
+      scrollWheelZoom={true}
+      style={{width: '100%', height: 'calc(100vh - 70px)'}}
+    >
+      <TileLayer url={tileUrl}/>
+      {/*{renderMarkers()}*/}
+      {renderProfessionals()}
+    </MapContainer>
   );
 }
 

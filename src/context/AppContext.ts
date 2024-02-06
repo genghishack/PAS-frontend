@@ -1,9 +1,6 @@
 import {createContext, useContext} from "react";
-import {ResourceObj} from "../types/app";
-import {CategoryObj} from "../types/category";
-import {ProfessionalObj} from "../types/professional";
 import {defaultUserObj, UserObj} from "../types/user";
-import {defaultSessionObj, SessionObj} from "../types/api";
+import {voidFn} from "../lib/utils";
 
 type AppContextType = {
   isAuthenticated: boolean;
@@ -21,8 +18,8 @@ export const AppContext = createContext<AppContextType>({
   isAdmin: false,
   accessToken: '',
   currentUser: defaultUserObj,
-  setIsAuthenticated: () => {},
-  setCurrentUser: () => {},
+  setIsAuthenticated: voidFn,
+  setCurrentUser: voidFn,
 })
 AppContext.displayName = "AppContext";
 

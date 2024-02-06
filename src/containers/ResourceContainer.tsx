@@ -53,16 +53,6 @@ const ResourceContainer = (props: IResourceContainer) => {
     ({userId} = match.params);
   }
 
-  const getMapMarkers = useCallback(async () => {
-    let markers = {data: []};
-    try {
-      markers = await getResources(userId);
-      setResources(markers.data);
-    } catch (e) {
-      // setError(e);
-    }
-  }, [userId]);
-
   const getCategories = useCallback(async () => {
     try {
       const result = await listCategories(accessToken);
@@ -92,11 +82,6 @@ const ResourceContainer = (props: IResourceContainer) => {
     }
   }, [accessToken, selectedCategory.id]);
 
-  //@ts-ignore
-  // useEffect(() => {
-  //   getMapMarkers().then();
-  // }, [getMapMarkers]);
-
   useEffect(() => {
     getCategories().then();
   }, [getCategories]);
@@ -120,8 +105,6 @@ const ResourceContainer = (props: IResourceContainer) => {
   return (
     <div className="ResourceContainer">
       <ResourceContext.Provider value={{
-        getMapMarkers,
-
         displayedCategory, selectedCategory,
         displayedProfessional, selectedProfessional,
         displayedResource, selectedResource,

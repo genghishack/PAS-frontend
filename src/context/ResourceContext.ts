@@ -2,10 +2,9 @@ import {createContext, useContext} from "react";
 import {ResourceObj} from "../types/app";
 import {CategoryObj, defaultCategoryObj} from "../types/category";
 import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
+import {voidFn} from "../lib/utils";
 
 type ResourceContextType = {
-  getMapMarkers: Function;
-
   displayedCategory: CategoryObj;
   selectedCategory: CategoryObj;
   displayedProfessional: ProfessionalObj;
@@ -40,8 +39,6 @@ type ResourceContextType = {
 }
 
 export const ResourceContext = createContext<ResourceContextType>({
-  getMapMarkers: () => {},
-
   displayedCategory: defaultCategoryObj,
   selectedCategory: defaultCategoryObj,
   displayedProfessional: defaultProfessionalObj,
@@ -49,30 +46,30 @@ export const ResourceContext = createContext<ResourceContextType>({
   displayedResource: {},
   selectedResource: {},
 
-  setDisplayedCategory: () => {},
-  setSelectedCategory: () => {},
-  setDisplayedProfessional: () => {},
-  setSelectedProfessional: () => {},
-  setDisplayedResource: () => {},
-  setSelectedResource: () => {},
+  setDisplayedCategory: voidFn,
+  setSelectedCategory: voidFn,
+  setDisplayedProfessional: voidFn,
+  setSelectedProfessional: voidFn,
+  setDisplayedResource: voidFn,
+  setSelectedResource: voidFn,
 
   resources: [],
   professionals: [],
   categories: [],
 
-  setResources: () => {},
-  setProfessionals: () => {},
-  setCategories: () => {},
+  setResources: voidFn,
+  setProfessionals: voidFn,
+  setCategories: voidFn,
 
   showDeleteResourceModal: false,
   showAddResourceModal: false,
   showEditResourceModal: false,
   showSubmitResourceModal: false,
 
-  setShowDeleteResourceModal: () => {},
-  setShowAddResourceModal: () => {},
-  setShowEditResourceModal: () => {},
-  setShowSubmitResourceModal: () => {},
+  setShowDeleteResourceModal: voidFn,
+  setShowAddResourceModal: voidFn,
+  setShowEditResourceModal: voidFn,
+  setShowSubmitResourceModal: voidFn,
 });
 ResourceContext.displayName = 'ResourceContext';
 

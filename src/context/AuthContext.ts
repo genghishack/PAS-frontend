@@ -1,4 +1,5 @@
 import {ChangeEventHandler, createContext, useContext} from "react";
+import {voidFn} from "../lib/utils";
 
 type AuthContextType = {
   isLoading: boolean;
@@ -12,12 +13,12 @@ type AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType>({
   isLoading: false,
-  setIsLoading: () => {},
+  setIsLoading: voidFn,
   fields: [],
-  handleFieldChange: () => {},
+  handleFieldChange: voidFn,
   newUser: {},
-  attemptSignin: () => {},
-  authPhaseTransition: () => {},
+  attemptSignin: voidFn,
+  authPhaseTransition: voidFn,
 });
 AuthContext.displayName = "AuthContext";
 

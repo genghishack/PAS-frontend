@@ -5,7 +5,7 @@ import {submitResource} from "../../lib/resource";
 
 const SubmitResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showSubmitResourceModal: show,
     setShowSubmitResourceModal: setShow,
     selectedResource: resource,
@@ -16,7 +16,7 @@ const SubmitResourceModal = () => {
   const handleSubmit = async () => {
     try {
       await submitResource(resource.id);
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       handleClose()
     } catch (e) {
       // TODO: handle error

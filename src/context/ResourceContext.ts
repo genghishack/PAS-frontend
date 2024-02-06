@@ -5,6 +5,8 @@ import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
 import {voidFn} from "../lib/utils";
 
 type ResourceContextType = {
+  getProfessionalsForCategory: Function;
+
   displayedCategory: CategoryObj;
   selectedCategory: CategoryObj;
   displayedProfessional: ProfessionalObj;
@@ -39,6 +41,8 @@ type ResourceContextType = {
 }
 
 export const ResourceContext = createContext<ResourceContextType>({
+  getProfessionalsForCategory: voidFn,
+
   displayedCategory: defaultCategoryObj,
   selectedCategory: defaultCategoryObj,
   displayedProfessional: defaultProfessionalObj,

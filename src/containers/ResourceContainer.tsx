@@ -38,7 +38,6 @@ const ResourceContainer = (props: IResourceContainer) => {
   const [selectedResource, setSelectedResource] = useState({});
 
   const [resources, setResources] = useState<ResourceObj[]>([]);
-  const [mapMarkers, setMapMarkers] = useState<MapMarkerObj[]>([]);
   const [professionals, setProfessionals] = useState<ProfessionalObj[]>([defaultProfessionalObj]);
   const [categories, setCategories] = useState<CategoryObj[]>([defaultCategoryObj]);
 
@@ -87,7 +86,7 @@ const ResourceContainer = (props: IResourceContainer) => {
   }, [getCategories]);
 
   useEffect(() => {
-    console.log({selectedCategory})
+    // console.log({selectedCategory})
     getProfessionalsForCategory().then();
   }, [selectedCategory.id])
 
@@ -105,6 +104,8 @@ const ResourceContainer = (props: IResourceContainer) => {
   return (
     <div className="ResourceContainer">
       <ResourceContext.Provider value={{
+        getProfessionalsForCategory,
+
         displayedCategory, selectedCategory,
         displayedProfessional, selectedProfessional,
         displayedResource, selectedResource,

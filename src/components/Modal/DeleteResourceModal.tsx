@@ -5,7 +5,7 @@ import {useResourceContext} from "../../context/ResourceContext";
 
 const DeleteResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showDeleteResourceModal: show,
     setShowDeleteResourceModal: setShow,
     selectedResource: resource,
@@ -16,7 +16,7 @@ const DeleteResourceModal = () => {
   const handleDelete = async () => {
     try {
       await deleteResource(resource.id);
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       handleClose();
     } catch (e) {
       // TODO: handle error

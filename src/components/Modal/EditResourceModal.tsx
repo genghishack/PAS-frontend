@@ -9,7 +9,7 @@ import {useFormFields} from "../../lib/hooks";
 
 const EditResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showEditResourceModal: show,
     setShowEditResourceModal: setShow,
     selectedResource: resource,
@@ -98,7 +98,7 @@ const EditResourceModal = () => {
         address: {street_1, street_2, city, state, country, postalCode},
         description,
       });
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       setIsLoading(false);
       setShow(false);
     } catch (e) {

@@ -93,9 +93,9 @@ const ResourceContainer = (props: IResourceContainer) => {
   }, [accessToken, selectedCategory.id]);
 
   //@ts-ignore
-  useEffect(() => {
-    getMapMarkers().then();
-  }, [getMapMarkers]);
+  // useEffect(() => {
+  //   getMapMarkers().then();
+  // }, [getMapMarkers]);
 
   useEffect(() => {
     getCategories().then();
@@ -103,7 +103,6 @@ const ResourceContainer = (props: IResourceContainer) => {
 
   useEffect(() => {
     console.log({selectedCategory})
-
     getProfessionalsForCategory().then();
   }, [selectedCategory.id])
 
@@ -145,7 +144,7 @@ const ResourceContainer = (props: IResourceContainer) => {
           resources={resources}
           userId={userId}
         />
-        <ResourceMap resources={resources}/>
+        <ResourceMap resources={resources} professionals={professionals}/>
         <InfoPanel
           slide={false}
           expanded={infoPanelExpanded}

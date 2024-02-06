@@ -1,3 +1,35 @@
 .ResourceMap {
   width: 100%;
 }
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+
+  .name {
+    display: flex;
+    font-weight: bold;
+
+    .nameFirst {
+    }
+
+    .nameLast {
+      padding-left: 5px;
+    }
+  }
+
+  .location {
+    display: flex;
+
+    .addressCity {
+    }
+
+    .addressState {
+      padding-left: 5px;
+    }
+
+    .addressCountry {
+      padding-left: 10px;
+    }
+  }
+}

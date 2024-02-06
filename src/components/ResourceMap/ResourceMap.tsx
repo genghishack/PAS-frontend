@@ -6,11 +6,12 @@ import './ResourceMap.scss';
 
 interface IResourceMap {
   resources: any;
+  professionals: any;
 }
 
 const ResourceMap = (props: IResourceMap) => {
   const {
-    resources,
+    resources, professionals
   } = props;
 
   const mapWindowRef = useRef(null);
@@ -30,6 +31,7 @@ const ResourceMap = (props: IResourceMap) => {
       <Map
         viewport={viewport}
         markers={resources}
+        professionals={professionals}
       />
     </div>
   );

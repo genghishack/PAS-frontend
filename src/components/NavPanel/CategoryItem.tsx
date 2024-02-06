@@ -22,7 +22,6 @@ const CategoryItem = (props: ICategoryItem) => {
   const {
     selectedCategory,
     setSelectedCategory,
-    setSelectedResource,
     setShowDeleteResourceModal,
     setShowEditResourceModal,
     setShowSubmitResourceModal,
@@ -45,24 +44,23 @@ const CategoryItem = (props: ICategoryItem) => {
 
   const handleCategoryClick = (evt) => {
     evt.preventDefault();
-    // setDisplayedCategory(category);
     setSelectedCategory(category);
   }
 
-  const handleSubmitClick = async () => {
-    setSelectedResource(category);
-    setShowSubmitResourceModal(true);
-  }
+  // const handleSubmitClick = async () => {
+  //   setSelectedResource(category);
+  //   setShowSubmitResourceModal(true);
+  // }
 
-  const handleEditClick = () => {
-    setSelectedResource(category);
-    setShowEditResourceModal(true);
-  }
+  // const handleEditClick = () => {
+  //   setSelectedResource(category);
+  //   setShowEditResourceModal(true);
+  // }
 
-  const handleDeleteClick = () => {
-    setSelectedResource(category);
-    setShowDeleteResourceModal(true);
-  }
+  // const handleDeleteClick = () => {
+  //   setSelectedResource(category);
+  //   setShowDeleteResourceModal(true);
+  // }
 
   return (
     <div className="NavItem">
@@ -73,9 +71,6 @@ const CategoryItem = (props: ICategoryItem) => {
           </Button>
         </div>
         {(selectedCategory.id && selectedCategory.id === category.id) ? <ProfessionalList/> : null}
-        {/*<div className="resourceLocation">*/}
-        {/*  {resourceLocation()}*/}
-        {/*</div>*/}
       </div>
       {/*{userId ? (*/}
       {/*  <div className="resourceControls">*/}

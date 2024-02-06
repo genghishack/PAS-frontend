@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
 import {ResourceContext} from '../context/ResourceContext';
-import ResourceMap from "../components/ResourceMap/ResourceMap";
+import ProfessionalMap from "../components/ProfessionalMap/ProfessionalMap";
 import InfoPanel from "../components/InfoPanel/InfoPanel";
 import NavPanel from '../components/NavPanel/NavPanel';
 import DeleteResourceModal from "../components/Modal/DeleteResourceModal";
@@ -16,6 +16,7 @@ import {CategoryObj, defaultCategoryObj} from "../types/category";
 import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
 import {IResponseObj, RelationshipObj, ResponseObj} from "../types/api";
 import {getIncludedRelationshipsOfType} from "../lib/jsonapi";
+import {getProfessional} from "../lib/professional";
 
 interface IResourceContainer {
   match?: any;
@@ -29,8 +30,6 @@ const ResourceContainer = (props: IResourceContainer) => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryObj>(defaultCategoryObj);
   const [displayedProfessional, setDisplayedProfessional] = useState<ProfessionalObj>(defaultProfessionalObj);
   const [selectedProfessional, setSelectedProfessional] = useState<ProfessionalObj>(defaultProfessionalObj);
-  const [displayedResource, setDisplayedResource] = useState({});
-  const [selectedResource, setSelectedResource] = useState({});
 
   const [professionals, setProfessionals] = useState<ProfessionalObj[]>([defaultProfessionalObj]);
   const [categories, setCategories] = useState<CategoryObj[]>([defaultCategoryObj]);
@@ -57,7 +56,6 @@ const ResourceContainer = (props: IResourceContainer) => {
 
   const getProfessionalsForCategory = useCallback(async () => {
     try {
-      // console.log(selectedCategory)
       if (selectedCategory.id) {
         const result: ResponseObj = await getCategoryWithProfessionals(accessToken, selectedCategory.id);
         // console.log({result});
@@ -75,14 +73,29 @@ const ResourceContainer = (props: IResourceContainer) => {
     }
   }, [accessToken, selectedCategory.id]);
 
+  const getProfessionalDetails = useCallback(async () => {
+    try {
+      if (selectedProfessional.id) {
+        const result: ResponseObj = await getProfessional(accessToken, selectedProfessional.id);
+        const {included, data}: IResponseObj = result;
+        console.log({result});
+      }
+    } catch (e) {
+      // setError(e);
+    }
+  }, [accessToken, selectedProfessional.id]);
+
   useEffect(() => {
     getCategories().then();
   }, [getCategories]);
 
   useEffect(() => {
-    // console.log({selectedCategory})
     getProfessionalsForCategory().then();
-  }, [selectedCategory.id, getProfessionalsForCategory])
+  }, [selectedCategory.id, getProfessionalsForCategory]);
+
+  useEffect(() => {
+    getProfessionalDetails().then();
+  }, [selectedProfessional.id, getProfessionalDetails]);
 
   return (
     <div className="ResourceContainer">
@@ -91,11 +104,9 @@ const ResourceContainer = (props: IResourceContainer) => {
 
         displayedCategory, selectedCategory,
         displayedProfessional, selectedProfessional,
-        displayedResource, selectedResource,
 
         setDisplayedCategory, setSelectedCategory,
         setDisplayedProfessional, setSelectedProfessional,
-        setDisplayedResource, setSelectedResource,
 
         professionals, categories,
 
@@ -108,7 +119,7 @@ const ResourceContainer = (props: IResourceContainer) => {
         setShowEditResourceModal, setShowSubmitResourceModal,
       }}>
         <NavPanel userId={userId}/>
-        <ResourceMap professionals={professionals}/>
+        <ProfessionalMap professionals={professionals}/>
         <InfoPanel
           slide={false}
           expanded={infoPanelExpanded}

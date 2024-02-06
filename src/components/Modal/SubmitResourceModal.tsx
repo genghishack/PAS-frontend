@@ -8,7 +8,7 @@ const SubmitResourceModal = () => {
     getProfessionalsForCategory,
     showSubmitResourceModal: show,
     setShowSubmitResourceModal: setShow,
-    selectedResource: resource,
+    selectedProfessional: resource,
   } = useResourceContext();
 
   const handleClose = () => setShow(false);
@@ -30,7 +30,7 @@ const SubmitResourceModal = () => {
         <Modal.Title>Submit Resource for Approval</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Submit resource {resource.name} for approval?
+        Submit resource {resource.attributes.nameFirst} {resource.attributes.nameLast} for approval?
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

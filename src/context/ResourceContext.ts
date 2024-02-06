@@ -10,15 +10,11 @@ type ResourceContextType = {
   selectedCategory: CategoryObj;
   displayedProfessional: ProfessionalObj;
   selectedProfessional: ProfessionalObj;
-  displayedResource: any;
-  selectedResource: any;
 
   setDisplayedCategory: Function;
   setSelectedCategory: Function;
   setDisplayedProfessional: Function;
   setSelectedProfessional: Function;
-  setDisplayedResource: Function;
-  setSelectedResource: Function;
 
   professionals: ProfessionalObj[];
   categories: CategoryObj[]
@@ -44,15 +40,11 @@ export const ResourceContext = createContext<ResourceContextType>({
   selectedCategory: defaultCategoryObj,
   displayedProfessional: defaultProfessionalObj,
   selectedProfessional: defaultProfessionalObj,
-  displayedResource: {},
-  selectedResource: {},
 
   setDisplayedCategory: voidFn,
   setSelectedCategory: voidFn,
   setDisplayedProfessional: voidFn,
   setSelectedProfessional: voidFn,
-  setDisplayedResource: voidFn,
-  setSelectedResource: voidFn,
 
   professionals: [],
   categories: [],

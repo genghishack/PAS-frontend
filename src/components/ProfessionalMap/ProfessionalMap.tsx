@@ -2,13 +2,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import {continentalViewport} from '../../lib/map';
 import Map from '../Map';
 
-import './ResourceMap.scss';
+import './ProfessionalMap.scss';
 
-interface IResourceMap {
+interface IProfessionalMap {
   professionals: any;
 }
 
-const ResourceMap = (props: IResourceMap) => {
+const ProfessionalMap = (props: IProfessionalMap) => {
   const {professionals} = props;
 
   const mapWindowRef = useRef(null);
@@ -33,4 +33,4 @@ const ResourceMap = (props: IResourceMap) => {
   );
 }
 
-export default ResourceMap;
+export default ProfessionalMap;

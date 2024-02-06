@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Modal } from 'react-bootstrap';
 import {useResourceContext} from "../../context/ResourceContext";
-import {submitResource} from "../../libs/resource";
+import {submitResource} from "../../lib/resource";
 
 const SubmitResourceModal = () => {
   const {

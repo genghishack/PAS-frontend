@@ -1,5 +1,7 @@
 import {createContext, useContext} from "react";
-import {CategoryObj, defaultCategoryObj, defaultProfessionalObj, ProfessionalObj, ResourceObj} from "../types/App";
+import {ResourceObj} from "../types/app";
+import {CategoryObj, defaultCategoryObj} from "../types/category";
+import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
 
 type ResourceContextType = {
   getMapMarkers: Function;

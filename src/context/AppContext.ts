@@ -1,5 +1,9 @@
 import {createContext, useContext} from "react";
-import {defaultSessionObj, defaultUserObj, CategoryObj, ProfessionalObj, ResourceObj, SessionObj, UserObj} from "../types/App";
+import {ResourceObj} from "../types/app";
+import {CategoryObj} from "../types/category";
+import {ProfessionalObj} from "../types/professional";
+import {defaultUserObj, UserObj} from "../types/user";
+import {defaultSessionObj, SessionObj} from "../types/api";
 
 type AppContextType = {
   isAuthenticated: boolean;

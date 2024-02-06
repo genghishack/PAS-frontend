@@ -7,7 +7,7 @@ import DropdownItem from "react-bootstrap/DropdownItem";
 import {useAppContext} from "../../context/AppContext";
 
 import './AuthNav.scss';
-import {defaultUserObj} from "../../types/App";
+import {defaultUserObj} from "../../types/user";
 
 const AuthNav = () => {
   const navigate = useNavigate();

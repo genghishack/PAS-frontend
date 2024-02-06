@@ -2,7 +2,7 @@ import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import {Button} from "react-bootstrap";
-import {deleteUser, disableUser, enableUser} from "../../../../libs/user";
+import {deleteUser, disableUser, enableUser} from "../../../../lib/user";
 
 interface IUserEnabledCell {
   user: any;

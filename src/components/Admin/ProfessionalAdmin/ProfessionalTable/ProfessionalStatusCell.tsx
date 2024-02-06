@@ -2,9 +2,9 @@ import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 import {Button} from "react-bootstrap";
-import {ProfessionalObj} from "../../../../types/App";
-import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/professional";
+import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../lib/professional";
 import {useAppContext} from "../../../../context/AppContext";
+import {ProfessionalObj} from "../../../../types/professional";
 
 interface IProfessionalStatusCell {
   professional: ProfessionalObj;

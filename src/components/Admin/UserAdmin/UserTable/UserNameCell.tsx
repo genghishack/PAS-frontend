@@ -3,8 +3,8 @@ import {Button, Form} from 'react-bootstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckSquare, faTimes, faEdit} from "@fortawesome/free-solid-svg-icons";
 
-import {useFormFields} from "../../../../libs/hooks";
-import {changeUsername} from "../../../../libs/user";
+import {useFormFields} from "../../../../lib/hooks";
+import {changeUsername} from "../../../../lib/user";
 
 interface IUserNameCell {
   user: any;

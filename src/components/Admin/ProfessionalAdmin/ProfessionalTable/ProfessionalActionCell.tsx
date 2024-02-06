@@ -1,8 +1,8 @@
-import {ProfessionalObj} from "../../../../types/App";
 import {useAppContext} from "../../../../context/AppContext";
-import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../libs/professional";
+import {activateProfessional, deactivateProfessional, deleteProfessional} from "../../../../lib/professional";
 import React from "react";
 import {Button} from "react-bootstrap";
+import {ProfessionalObj} from "../../../../types/professional";
 
 interface IProfessionalActionCell {
   professional: ProfessionalObj;

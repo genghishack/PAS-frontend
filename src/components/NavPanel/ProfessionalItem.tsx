@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
-import {ProfessionalObj} from "../../types/App";
 import {useResourceContext} from "../../context/ResourceContext";
+import {ProfessionalObj} from "../../types/professional";
 
 interface IProfessionalItem {
   professional: ProfessionalObj
@@ -13,7 +13,7 @@ const ProfessionalItem = ({professional}: IProfessionalItem) => {
 
   const handleProfessionalClick = (evt) => {
     evt.preventDefault();
-    // console.log({professional});
+    console.log({professional});
     setSelectedProfessional(professional);
   }
 
@@ -22,7 +22,7 @@ const ProfessionalItem = ({professional}: IProfessionalItem) => {
             className="professionalItem"
             onClick={handleProfessionalClick}
     >
-      {professional['name_first']} {professional['name_last']}
+      {professional.attributes['nameFirst']} {professional.attributes['nameLast']}
     </Button>
   )
 }

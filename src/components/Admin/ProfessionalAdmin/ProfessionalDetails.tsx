@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {ProfessionalObj} from "../../../types/App";
-import {getProfessional} from "../../../libs/professional";
+import {getProfessional} from "../../../lib/professional";
 import {useAppContext} from "../../../context/AppContext";
 import DetailItem from "./ProfessionalDetails/DetailItem";
 
 import './ProfessionalDetails/ProfessionalDetails.scss';
 import DetailGroup from "./ProfessionalDetails/DetailGroup";
+import {ProfessionalObj} from "../../../types/professional";
 
 interface IProfessionalDetails {
   professional: ProfessionalObj;

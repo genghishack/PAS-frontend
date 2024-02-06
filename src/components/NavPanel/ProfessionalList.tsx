@@ -9,7 +9,7 @@ const ProfessionalList = () => {
   return (
     <div className="professionalList">
       {professionals.map(professional => {
-        console.log({professional});
+        // console.log({professional});
         if (professional) {
           return (
             <ProfessionalItem key={professional.id}

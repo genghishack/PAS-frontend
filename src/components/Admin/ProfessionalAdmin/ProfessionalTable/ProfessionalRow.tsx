@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import {CategoryObj, IProfessionalObj, ProfessionalObj} from "../../../../types/App";
 import ProfessionalCategoryCell from "./ProfessionalCategoryCell";
 import ProfessionalStatusCell from "./ProfessionalStatusCell";
 import ProfessionalActionCell from "./ProfessionalActionCell";
+import {CategoryObj} from "../../../../types/category";
+import {IProfessionalObj, ProfessionalObj} from "../../../../types/professional";
 
 interface IProfessionalRow {
   initialProfessionalData: ProfessionalObj;

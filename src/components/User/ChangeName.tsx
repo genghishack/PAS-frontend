@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 
 import LoaderButton from "../LoaderButton/LoaderButton";
-import {onError} from "../../libs/error";
-import {getUser} from '../../libs/user';
+import {onError} from "../../lib/error";
+import {getUser} from '../../lib/user';
 import {useProfileContext} from "../../context/ProfileContext";
 import {useAppContext} from "../../context/AppContext";
 

@@ -4,7 +4,7 @@ import {Auth} from "aws-amplify";
 import Button from 'react-bootstrap/esm/Button';
 
 import LoaderButton from "../LoaderButton/LoaderButton";
-import {onError} from "../../libs/error";
+import {onError} from "../../lib/error";
 import {useAuthContext} from "../../context/AuthContext";
 
 const ResetPasswordConfirmation = () => {

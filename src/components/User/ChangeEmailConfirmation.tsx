@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/esm/Button';
 import {Auth} from "aws-amplify";
 
 import LoaderButton from "../LoaderButton/LoaderButton";
-import {getUser} from "../../libs/user";
-import {onError} from "../../libs/error";
+import {getUser} from "../../lib/user";
+import {onError} from "../../lib/error";
 import {useProfileContext} from "../../context/ProfileContext";
 import {useAppContext} from "../../context/AppContext";
 

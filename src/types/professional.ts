@@ -1,66 +1,5 @@
-export type UserObj = {
-  id?: string;
-  email: string;
-  name: string;
-  roles: string[];
-  isAdmin: boolean;
-  isEditor: boolean;
-  isUser: boolean;
-  isGuest: boolean;
-};
-
-export const defaultUserObj: UserObj = {
-  id: undefined,
-  email: '',
-  name: '',
-  roles: [],
-  isAdmin: false,
-  isEditor: false,
-  isUser: false,
-  isGuest: true,
-}
-
-export type MapMarkerObj = [number, number];
-
-export type ResourceObj = any;
-
-type ResponseDataObj = {
-  type: string;
-  id: string;
-  attributes: any;
-}
-export type ResponseObj = {
-  links?: {
-    self: string;
-  },
-  data: any[];
-}
-export const defaultResponseObj: ResponseObj = {
-  data: []
-}
-
-type CategoryAttributes = {
-  id?: number;
-  nameSlug?: string;
-  relationships?: {};
-  nameDisplay: string;
-}
-const defaultCategoryAttributes: CategoryAttributes = {
-  nameDisplay: '',
-}
-export type CategoryObj = {
-  type: string;
-  id: string;
-  attributes: CategoryAttributes;
-}
-export const defaultCategoryObj = {
-  type: 'category',
-  id: '',
-  attributes: defaultCategoryAttributes
-}
-export interface ICategoryObj {
-  attributes: CategoryAttributes;
-}
+import {CategoryAttributes, defaultCategoryAttributes} from "./category";
+import {RelationshipObj} from "./api";
 
 export type ProfessionalAttributes = {
   nameLast: string;
@@ -92,7 +31,6 @@ export type ProfessionalAttributes = {
   webUrl?: string;
   geojson: string;
 }
-
 const defaultProfessionalAttributes: ProfessionalAttributes = {
   nameLast: '',
   nameFirst: '',
@@ -105,6 +43,7 @@ const defaultProfessionalAttributes: ProfessionalAttributes = {
   categories: [defaultCategoryAttributes],
   geojson: '[]',
 }
+
 export interface IProfessionalAttributes {
   geojson: string;
 }
@@ -124,19 +63,7 @@ export const defaultProfessionalObj: ProfessionalObj = {
   id: '',
   attributes: defaultProfessionalAttributes
 }
+
 export interface IProfessionalObj {
   attributes: ProfessionalAttributes;
-}
-
-export type RelationshipObj = {
-  id: string;
-  type: string;
-}
-
-export type SessionObj = {
-  accessToken: string;
-}
-
-export const defaultSessionObj: SessionObj = {
-  accessToken: '',
 }

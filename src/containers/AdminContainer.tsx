@@ -7,7 +7,7 @@ import ProfessionalAdmin from "../components/Admin/ProfessionalAdmin/Professiona
 
 import './Admin.scss';
 import AdminMenu from "../components/Admin/AdminMenu";
-import {defaultCategoryObj} from "../types/App";
+import {defaultCategoryObj} from "../types/category";
 
 const AdminContainer = () => {
   const [adminPhase, setAdminPhase] = useState('');

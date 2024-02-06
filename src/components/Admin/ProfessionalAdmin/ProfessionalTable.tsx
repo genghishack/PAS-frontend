@@ -1,7 +1,8 @@
 import React from 'react';
-import {CategoryObj, ProfessionalObj} from "../../../types/App";
 import ProfessionalRow from "./ProfessionalTable/ProfessionalRow";
 import {Table} from "react-bootstrap";
+import {CategoryObj} from "../../../types/category";
+import {ProfessionalObj} from "../../../types/professional";
 
 interface IProfessionalTable {
   professionalList: ProfessionalObj[];

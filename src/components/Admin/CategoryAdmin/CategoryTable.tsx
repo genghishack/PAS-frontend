@@ -1,7 +1,7 @@
-import {CategoryObj} from "../../../types/App";
 import CategoryRow from "./CategoryTable/CategoryRow";
 import React from "react";
 import {Table} from "react-bootstrap";
+import {CategoryObj} from "../../../types/category";
 
 interface ICategoryTable {
   categoryList: CategoryObj[];

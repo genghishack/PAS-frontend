@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckSquare, faPlusSquare, faTimes} from "@fortawesome/free-solid-svg-icons";
-import {useFormFields} from "../../../libs/hooks";
-import {createProfessional} from "../../../libs/professional";
+import {useFormFields} from "../../../lib/hooks";
+import {createProfessional} from "../../../lib/professional";
 import {useAppContext} from "../../../context/AppContext";
 
 interface IAddProfessional {

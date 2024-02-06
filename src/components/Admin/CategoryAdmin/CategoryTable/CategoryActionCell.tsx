@@ -1,7 +1,7 @@
 import React from "react";
-import {CategoryObj} from "../../../../types/App";
 import {useAppContext} from "../../../../context/AppContext";
 import {Button} from "react-bootstrap";
+import {CategoryObj} from "../../../../types/category";
 
 interface ICategoryActionCell {
   category: CategoryObj;

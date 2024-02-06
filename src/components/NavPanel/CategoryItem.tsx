@@ -8,8 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {useResourceContext} from "../../context/ResourceContext";
 import {Button} from "react-bootstrap";
-import {CategoryObj} from "../../types/App";
 import ProfessionalList from "./ProfessionalList";
+import {CategoryObj} from "../../types/category";
 
 interface ICategoryItem {
   category: CategoryObj;

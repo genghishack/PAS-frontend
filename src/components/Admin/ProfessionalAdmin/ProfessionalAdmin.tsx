@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useAppContext} from "../../../context/AppContext";
-import {getProfessional, listProfessionals} from "../../../libs/professional";
+import {getProfessional, listProfessionals} from "../../../lib/professional";
 import AddProfessional from "./AddProfessional";
 import ProfessionalTable from "./ProfessionalTable";
-import {defaultProfessionalObj, ProfessionalObj} from "../../../types/App";
 import ProfessionalDetails from "./ProfessionalDetails";
 import {Button} from "react-bootstrap";
+import {defaultProfessionalObj, ProfessionalObj} from "../../../types/professional";
 
 const ProfessionalAdmin = () => {
   const {accessToken} = useAppContext();

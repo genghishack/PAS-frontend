@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Table from 'react-bootstrap/Table';
-import {listRoles, listUsers} from "../../../libs/user";
+import {listRoles, listUsers} from "../../../lib/user";
 import UserRow from "./UserTable/UserRow";
 import CreateUser from "./CreateUser";
 import UserTable from "./UserTable";

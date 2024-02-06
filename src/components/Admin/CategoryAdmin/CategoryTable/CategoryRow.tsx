@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useAdminContext} from "../../../../context/AdminContext";
-import {CategoryObj, ICategoryObj} from "../../../../types/App";
 import CategoryActionCell from "./CategoryActionCell";
+import {CategoryObj, ICategoryObj} from "../../../../types/category";
 
 interface ICategoryRow {
   initialCategoryData: CategoryObj;

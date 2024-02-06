@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useResourceContext} from "../../context/ResourceContext";
 import {Button, Form, Modal} from "react-bootstrap";
-import {editResource} from "../../libs/resource";
-import {onError} from "../../libs/error";
+import {editResource} from "../../lib/resource";
+import {onError} from "../../lib/error";
 import ResourceFields from "../Form/ResourceFields";
 import LoaderButton from "../LoaderButton/LoaderButton";
-import {useFormFields} from "../../libs/hooks";
+import {useFormFields} from "../../lib/hooks";
 
 const EditResourceModal = () => {
   const {

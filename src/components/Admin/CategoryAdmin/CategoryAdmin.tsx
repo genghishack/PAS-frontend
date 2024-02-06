@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {listCategories} from "../../../libs/category";
+import {listCategories} from "../../../lib/category";
 import {useAppContext} from "../../../context/AppContext";
 import AddCategory from "./AddCategory";
 import CategoryTable from "./CategoryTable";

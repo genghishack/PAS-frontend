@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
-import {getResources} from "../libs/resource";
+import {getResources} from "../lib/resource";
 import {ResourceContext} from '../context/ResourceContext';
 import ResourceMap from "../components/ResourceMap/ResourceMap";
 import InfoPanel from "../components/InfoPanel/InfoPanel";
@@ -12,15 +12,15 @@ import AddResourceModal from "../components/Modal/AddResourceModal";
 
 import './Resource.scss';
 import {useAppContext} from "../context/AppContext";
-import {getCategoryWithProfessionals, listCategories} from "../libs/category";
+import {getCategoryWithProfessionals, listCategories} from "../lib/category";
 import {
-  CategoryObj,
-  defaultCategoryObj,
-  defaultProfessionalObj, IProfessionalAttributes,
   MapMarkerObj,
-  ProfessionalObj,
   ResourceObj
-} from "../types/App";
+} from "../types/app";
+import {CategoryObj, defaultCategoryObj} from "../types/category";
+import {defaultProfessionalObj, IProfessionalAttributes, ProfessionalObj} from "../types/professional";
+import {IncludedObj, IResponseObj, RelationshipObj, ResponseObj} from "../types/api";
+import {getIncludedRelationshipsOfType} from "../lib/jsonapi";
 
 interface IResourceContainer {
   match?: any;
@@ -74,11 +74,18 @@ const ResourceContainer = (props: IResourceContainer) => {
 
   const getProfessionalsForCategory = useCallback(async () => {
     try {
-      // console.log('xyz', selectedCategory)
+      // console.log(selectedCategory)
       if (selectedCategory.id) {
-        const result = await getCategoryWithProfessionals(accessToken, selectedCategory.id);
-        console.log('xxx', {result})
-        // setProfessionals(result.data[0].attributes.professionals);
+        const result: ResponseObj = await getCategoryWithProfessionals(accessToken, selectedCategory.id);
+        // console.log({result});
+        const {included, data}: IResponseObj = result;
+        const relationships: RelationshipObj[] = data[0].relationships.professionals.data;
+        // console.log({relationships});
+        const professionalList: any[] = getIncludedRelationshipsOfType(
+          included!, relationships, 'professional'
+        );
+        console.log({professionalList});
+        setProfessionals(professionalList);
       }
     } catch (e) {
       // setError(e);
@@ -86,9 +93,9 @@ const ResourceContainer = (props: IResourceContainer) => {
   }, [accessToken, selectedCategory.id]);
 
   //@ts-ignore
-  // useEffect(() => {
-  //   getMapMarkers().then();
-  // }, [getMapMarkers]);
+  useEffect(() => {
+    getMapMarkers().then();
+  }, [getMapMarkers]);
 
   useEffect(() => {
     getCategories().then();
@@ -96,6 +103,7 @@ const ResourceContainer = (props: IResourceContainer) => {
 
   useEffect(() => {
     console.log({selectedCategory})
+
     getProfessionalsForCategory().then();
   }, [selectedCategory.id])
 
@@ -104,8 +112,8 @@ const ResourceContainer = (props: IResourceContainer) => {
       console.log({professionals});
       const latLngs = professionals.map((professional: ProfessionalObj) => {
         const {geojson}: IProfessionalAttributes = professional.attributes;
-          const parsedGeojson = JSON.parse(geojson);
-
+        const parsedGeojson = JSON.parse(geojson);
+        console.log({geojson, parsedGeojson});
       });
     }
   }, [professionals])

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {deleteResource} from "../../libs/resource";
+import {deleteResource} from "../../lib/resource";
 import {useResourceContext} from "../../context/ResourceContext";
 
 const DeleteResourceModal = () => {

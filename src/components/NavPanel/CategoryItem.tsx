@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArrowAltCircleRight,
@@ -62,11 +62,15 @@ const CategoryItem = (props: ICategoryItem) => {
   //   setShowDeleteResourceModal(true);
   // }
 
+
   return (
     <div className="NavItem">
       <div className="categoryInfo">
         <div className="categoryName">
-          <Button variant="link" onClick={handleCategoryClick}>
+          <Button variant="link"
+                  onClick={handleCategoryClick}
+                  className={(selectedCategory.id && selectedCategory.id === category.id) ? 'selected' : ''}
+          >
             {nameDisplay}
           </Button>
         </div>

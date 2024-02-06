@@ -77,8 +77,8 @@ const ResourceContainer = (props: IResourceContainer) => {
     try {
       if (selectedProfessional.id) {
         const result: ResponseObj = await getProfessional(accessToken, selectedProfessional.id);
-        const {included, data}: IResponseObj = result;
-        console.log({result});
+        const professionalObj: any = result.data[0];
+        setDisplayedProfessional(professionalObj)
       }
     } catch (e) {
       // setError(e);

@@ -8,7 +8,7 @@ interface IProfessionalItem {
 }
 
 const ProfessionalItem = ({professional}: IProfessionalItem) => {
-  const {setSelectedProfessional} = useResourceContext()
+  const {selectedProfessional, setSelectedProfessional} = useResourceContext()
   const {id} = professional;
 
   const handleProfessionalClick = (evt) => {
@@ -19,7 +19,7 @@ const ProfessionalItem = ({professional}: IProfessionalItem) => {
 
   return (
     <Button variant="link"
-            className="professionalItem"
+            className={`professionalItem ${(selectedProfessional.id === id) ? 'selected' : ''}`}
             onClick={handleProfessionalClick}
     >
       {professional.attributes['nameFirst']} {professional.attributes['nameLast']}

@@ -5,14 +5,11 @@ import Map from '../Map';
 import './ResourceMap.scss';
 
 interface IResourceMap {
-  resources: any;
   professionals: any;
 }
 
 const ResourceMap = (props: IResourceMap) => {
-  const {
-    resources, professionals
-  } = props;
+  const {professionals} = props;
 
   const mapWindowRef = useRef(null);
 
@@ -30,8 +27,7 @@ const ResourceMap = (props: IResourceMap) => {
     <div className="ResourceMap" ref={mapWindowRef}>
       <Map
         viewport={viewport}
-        markers={resources}
-        professionals={professionals}
+        markers={professionals}
       />
     </div>
   );

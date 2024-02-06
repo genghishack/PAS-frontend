@@ -5,16 +5,14 @@ import { useResourceContext } from '../../context/ResourceContext';
 import CategoryItem from "./CategoryItem";
 
 import './NavPanel.scss';
-import {useAppContext} from "../../context/AppContext";
 
 interface INavPanel {
-  resources: any;
   userId: string | null;
 }
 
 const NavPanel = (props: INavPanel) => {
-  const {resources, userId} = props;
-  const {professionals, categories, setShowAddResourceModal} = useResourceContext();
+  const {userId} = props;
+  const {categories, setShowAddResourceModal} = useResourceContext();
 
   const handleAddClick = async () => {
     setShowAddResourceModal(true);

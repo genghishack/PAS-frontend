@@ -6,7 +6,6 @@ import {LatLngExpression} from "leaflet";
 interface IMapProps {
   viewport: any;
   markers?: [any];
-  professionals?: [any];
 }
 
 const mapConf = Config.mapbox;
@@ -15,7 +14,7 @@ const { username, accessToken, keys } = mapConf;
 const tileUrl = `https://api.mapbox.com/styles/v1/${username}/${keys.bright}/tiles/256/{z}/{x}/{y}@2x?access_token=${accessToken}`
 
 const Map = (props: IMapProps) => {
-  const {viewport, markers, professionals} = props;
+  const {viewport, markers} = props;
 
   // console.log({markers});
 
@@ -24,12 +23,12 @@ const Map = (props: IMapProps) => {
   const renderMarkers = () => {
     return (
       <>
-        {professionals && professionals[0].id && professionals.map((marker) => {
+        {markers && markers[0].id && markers.map((marker) => {
           const {geojson, nameLast, nameFirst, addressCity, addressState, addressCountry} = marker.attributes;
           const parsedGeojson = JSON.parse(geojson);
           const {coordinates} = parsedGeojson;
           const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
-          console.log({latlng});
+          // console.log({latlng});
 
           if (marker.id !== '') {
             return (

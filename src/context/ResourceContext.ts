@@ -1,5 +1,4 @@
 import {createContext, useContext} from "react";
-import {ResourceObj} from "../types/app";
 import {CategoryObj, defaultCategoryObj} from "../types/category";
 import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
 import {voidFn} from "../lib/utils";
@@ -21,11 +20,9 @@ type ResourceContextType = {
   setDisplayedResource: Function;
   setSelectedResource: Function;
 
-  resources: ResourceObj[];
   professionals: ProfessionalObj[];
   categories: CategoryObj[]
 
-  setResources: Function;
   setProfessionals: Function;
   setCategories: Function;
 
@@ -57,11 +54,9 @@ export const ResourceContext = createContext<ResourceContextType>({
   setDisplayedResource: voidFn,
   setSelectedResource: voidFn,
 
-  resources: [],
   professionals: [],
   categories: [],
 
-  setResources: voidFn,
   setProfessionals: voidFn,
   setCategories: voidFn,
 

@@ -21,7 +21,7 @@ const Map = (props: IMapProps) => {
 
   const { latitude, longitude, zoom } = viewport;
 
-  const renderProfessionals = () => {
+  const renderMarkers = () => {
     return (
       <>
         {professionals && professionals[0].id && professionals.map((marker) => {
@@ -35,14 +35,16 @@ const Map = (props: IMapProps) => {
             return (
               <Marker key={marker.id} position={latlng}>
                 <Popup>
-                  <div className="markerName">
-                    <span className="nameFirst">{nameFirst}</span>
-                    <span className="nameLast">{nameLast}</span>
-                  </div>
-                  <div className="markerLocation">
-                    <span className="addressCity">{addressCity}</span>,
-                    <span className="addressState">{addressState}</span>,
-                    <span className="addressCountry">{addressCountry}</span>
+                  <div className="popup-content">
+                    <div className="name">
+                      <span className="nameFirst">{nameFirst}</span>
+                      <span className="nameLast">{nameLast}</span>
+                    </div>
+                    <div className="location">
+                      <span className="addressCity">{addressCity}</span>,
+                      <span className="addressState">{addressState}</span>
+                      <span className="addressCountry">{addressCountry}</span>
+                    </div>
                   </div>
                 </Popup>
               </Marker>
@@ -50,21 +52,6 @@ const Map = (props: IMapProps) => {
           } else {
             return null;
           }
-        })}
-      </>
-    )
-  }
-
-  const renderMarkers = () => {
-    console.log({markers});
-    return (
-      <>
-        {markers && markers.map((marker) => {
-          return (
-            <Marker key={marker.id} position={marker.latlng}>
-              <Popup>{marker.name}</Popup>
-            </Marker>
-          )
         })}
       </>
     )
@@ -79,8 +66,7 @@ const Map = (props: IMapProps) => {
       style={{width: '100%', height: 'calc(100vh - 70px)'}}
     >
       <TileLayer url={tileUrl}/>
-      {/*{renderMarkers()}*/}
-      {renderProfessionals()}
+      {renderMarkers()}
     </MapContainer>
   );
 }

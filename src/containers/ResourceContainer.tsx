@@ -93,9 +93,9 @@ const ResourceContainer = (props: IResourceContainer) => {
   }, [accessToken, selectedCategory.id]);
 
   //@ts-ignore
-  useEffect(() => {
-    getMapMarkers().then();
-  }, [getMapMarkers]);
+  // useEffect(() => {
+  //   getMapMarkers().then();
+  // }, [getMapMarkers]);
 
   useEffect(() => {
     getCategories().then();

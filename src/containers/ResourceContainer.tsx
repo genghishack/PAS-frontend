@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 import {ResourceContext} from '../context/ResourceContext';
 import ProfessionalMap from "../components/ProfessionalMap/ProfessionalMap";
@@ -17,6 +17,7 @@ import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
 import {IResponseObj, RelationshipObj, ResponseObj} from "../types/api";
 import {getIncludedRelationshipsOfType} from "../lib/jsonapi";
 import {getProfessional} from "../lib/professional";
+import {LatLngExpression} from "leaflet";
 
 interface IResourceContainer {
   match?: any;
@@ -39,6 +40,10 @@ const ResourceContainer = (props: IResourceContainer) => {
   const [showEditResourceModal, setShowEditResourceModal] = useState(false);
   const [showSubmitResourceModal, setShowSubmitResourceModal] = useState(false);
   const [infoPanelExpanded, setInfoPanelExpanded] = useState(true);
+
+  const [map, setMap] = useState(useRef(null));
+  const [markers, setMarkers] = useState({});
+  const [popups, setPopups] = useState({});
 
   let userId = null;
   if (match) {
@@ -78,7 +83,15 @@ const ResourceContainer = (props: IResourceContainer) => {
       if (selectedProfessional.id) {
         const result: ResponseObj = await getProfessional(accessToken, selectedProfessional.id);
         const professionalObj: any = result.data[0];
-        setDisplayedProfessional(professionalObj)
+        setDisplayedProfessional(professionalObj);
+
+        const {geojson} = selectedProfessional.attributes;
+        const parsedGeojson = JSON.parse(geojson);
+        const {coordinates} = parsedGeojson;
+        const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
+        //@ts-ignore
+        // map.current!.flyTo(latlng, 10);
+        markers[selectedProfessional.id].current.openPopup()
       }
     } catch (e) {
       // setError(e);
@@ -117,6 +130,8 @@ const ResourceContainer = (props: IResourceContainer) => {
 
         setShowDeleteResourceModal, setShowAddResourceModal,
         setShowEditResourceModal, setShowSubmitResourceModal,
+
+        map, setMap, markers, setMarkers, popups, setPopups
       }}>
         <NavPanel userId={userId}/>
         <ProfessionalMap professionals={professionals}/>

@@ -1,4 +1,4 @@
-import {createContext, useContext} from "react";
+import {createContext, useContext, useRef} from "react";
 import {CategoryObj, defaultCategoryObj} from "../types/category";
 import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
 import {voidFn} from "../lib/utils";
@@ -31,6 +31,14 @@ type ResourceContextType = {
   setShowAddResourceModal: Function;
   setShowEditResourceModal: Function;
   setShowSubmitResourceModal: Function;
+
+  map: any;
+  markers: any;
+  popups: any;
+
+  setMap: Function;
+  setMarkers: Function;
+  setPopups: Function;
 }
 
 export const ResourceContext = createContext<ResourceContextType>({
@@ -61,6 +69,14 @@ export const ResourceContext = createContext<ResourceContextType>({
   setShowAddResourceModal: voidFn,
   setShowEditResourceModal: voidFn,
   setShowSubmitResourceModal: voidFn,
+
+  map: null,
+  markers: null,
+  popups: null,
+
+  setMap: voidFn,
+  setMarkers: voidFn,
+  setPopups: voidFn,
 });
 ResourceContext.displayName = 'ResourceContext';
 

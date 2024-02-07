@@ -9,13 +9,7 @@ import Routes from './components/Routes/Routes';
 import Header from "./components/Header/Header";
 
 import './App.scss';
-import {
-  ResourceObj
-} from "./types/app";
-import {CategoryObj, defaultCategoryObj} from "./types/category";
-import {defaultProfessionalObj, ProfessionalObj} from "./types/professional";
 import {defaultUserObj, UserObj} from "./types/user";
-import {defaultResponseObj, defaultSessionObj, ResponseObj, SessionObj} from "./types/api";
 
 const App = () => {
   const [isAuthenticating, setIsAuthenticating] = useState<boolean>(true);

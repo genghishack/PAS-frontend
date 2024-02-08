@@ -9,10 +9,10 @@ import {useFormFields} from "../../lib/hooks";
 
 const EditResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showEditResourceModal: show,
     setShowEditResourceModal: setShow,
-    selectedResource: resource,
+    selectedProfessional: resource,
   } = useResourceContext();
 
   const emptyFormFields = {
@@ -36,19 +36,19 @@ const EditResourceModal = () => {
   const [fields, handleFieldChange] = useFormFields(emptyFormFields);
 
   const setFieldsToResource = useCallback(() => {
-    fields.name = resource.name;
-    fields.street_1 = resource.address_json.street_1;
-    fields.street_2 = resource.address_json.street_2;
-    fields.city = resource.address_json.city;
-    fields.state = resource.address_json.state;
-    fields.country = resource.address_json.country;
-    fields.postalCode = resource.address_json.postalCode;
-    fields.description = resource.description;
-    fields.website = resource.website;
-    fields.phone = resource.phone;
-    fields.fax = resource.fax;
-    fields.email = resource.email;
-    fields.business = resource.business_name;
+    fields.name = `${resource.attributes.nameFirst} ${resource.attributes.nameLast}`;
+    fields.street_1 = resource.attributes.addressStreet1;
+    fields.street_2 = resource.attributes.addressStreet2;
+    fields.city = resource.attributes.addressCity;
+    fields.state = resource.attributes.addressState;
+    fields.country = resource.attributes.addressCountry;
+    fields.postalCode = resource.attributes.addressPostalCode;
+    fields.description = resource.attributes.comments;
+    fields.website = resource.attributes.webUrl;
+    fields.phone = resource.attributes.phoneMain;
+    fields.fax = resource.attributes.phoneFax;
+    fields.email = resource.attributes.email;
+    fields.business = resource.attributes.organization;
   }, [fields, resource])
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const EditResourceModal = () => {
         address: {street_1, street_2, city, state, country, postalCode},
         description,
       });
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       setIsLoading(false);
       setShow(false);
     } catch (e) {

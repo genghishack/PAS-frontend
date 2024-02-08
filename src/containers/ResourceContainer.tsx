@@ -1,8 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
-import {getResources} from "../lib/resource";
 import {ResourceContext} from '../context/ResourceContext';
-import ResourceMap from "../components/ResourceMap/ResourceMap";
+import ProfessionalMap from "../components/ProfessionalMap/ProfessionalMap";
 import InfoPanel from "../components/InfoPanel/InfoPanel";
 import NavPanel from '../components/NavPanel/NavPanel';
 import DeleteResourceModal from "../components/Modal/DeleteResourceModal";
@@ -13,14 +12,12 @@ import AddResourceModal from "../components/Modal/AddResourceModal";
 import './Resource.scss';
 import {useAppContext} from "../context/AppContext";
 import {getCategoryWithProfessionals, listCategories} from "../lib/category";
-import {
-  MapMarkerObj,
-  ResourceObj
-} from "../types/app";
 import {CategoryObj, defaultCategoryObj} from "../types/category";
-import {defaultProfessionalObj, IProfessionalAttributes, ProfessionalObj} from "../types/professional";
-import {IncludedObj, IResponseObj, RelationshipObj, ResponseObj} from "../types/api";
+import {defaultProfessionalObj, ProfessionalObj} from "../types/professional";
+import {IResponseObj, RelationshipObj, ResponseObj} from "../types/api";
 import {getIncludedRelationshipsOfType} from "../lib/jsonapi";
+import {getProfessional} from "../lib/professional";
+import {LatLngExpression} from "leaflet";
 
 interface IResourceContainer {
   match?: any;
@@ -34,11 +31,7 @@ const ResourceContainer = (props: IResourceContainer) => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryObj>(defaultCategoryObj);
   const [displayedProfessional, setDisplayedProfessional] = useState<ProfessionalObj>(defaultProfessionalObj);
   const [selectedProfessional, setSelectedProfessional] = useState<ProfessionalObj>(defaultProfessionalObj);
-  const [displayedResource, setDisplayedResource] = useState({});
-  const [selectedResource, setSelectedResource] = useState({});
 
-  const [resources, setResources] = useState<ResourceObj[]>([]);
-  const [mapMarkers, setMapMarkers] = useState<MapMarkerObj[]>([]);
   const [professionals, setProfessionals] = useState<ProfessionalObj[]>([defaultProfessionalObj]);
   const [categories, setCategories] = useState<CategoryObj[]>([defaultCategoryObj]);
 
@@ -48,20 +41,14 @@ const ResourceContainer = (props: IResourceContainer) => {
   const [showSubmitResourceModal, setShowSubmitResourceModal] = useState(false);
   const [infoPanelExpanded, setInfoPanelExpanded] = useState(true);
 
+  const [map, setMap] = useState(useRef(null));
+  const [markers, setMarkers] = useState({});
+  const [popups, setPopups] = useState({});
+
   let userId = null;
   if (match) {
     ({userId} = match.params);
   }
-
-  const getMapMarkers = useCallback(async () => {
-    let markers = {data: []};
-    try {
-      markers = await getResources(userId);
-      setResources(markers.data);
-    } catch (e) {
-      // setError(e);
-    }
-  }, [userId]);
 
   const getCategories = useCallback(async () => {
     try {
@@ -74,7 +61,6 @@ const ResourceContainer = (props: IResourceContainer) => {
 
   const getProfessionalsForCategory = useCallback(async () => {
     try {
-      // console.log(selectedCategory)
       if (selectedCategory.id) {
         const result: ResponseObj = await getCategoryWithProfessionals(accessToken, selectedCategory.id);
         // console.log({result});
@@ -84,7 +70,7 @@ const ResourceContainer = (props: IResourceContainer) => {
         const professionalList: any[] = getIncludedRelationshipsOfType(
           included!, relationships, 'professional'
         );
-        console.log({professionalList});
+        // console.log({professionalList});
         setProfessionals(professionalList);
       }
     } catch (e) {
@@ -92,59 +78,63 @@ const ResourceContainer = (props: IResourceContainer) => {
     }
   }, [accessToken, selectedCategory.id]);
 
-  //@ts-ignore
-  // useEffect(() => {
-  //   getMapMarkers().then();
-  // }, [getMapMarkers]);
+  const getProfessionalDetails = useCallback(async () => {
+    try {
+      if (selectedProfessional.id) {
+        const result: ResponseObj = await getProfessional(accessToken, selectedProfessional.id);
+        const professionalObj: any = result.data[0];
+        setDisplayedProfessional(professionalObj);
+
+        const {geojson} = selectedProfessional.attributes;
+        const parsedGeojson = JSON.parse(geojson);
+        const {coordinates} = parsedGeojson;
+        const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
+        //@ts-ignore
+        // map.current!.flyTo(latlng, 10);
+        markers[selectedProfessional.id].current.openPopup()
+      }
+    } catch (e) {
+      // setError(e);
+    }
+  }, [accessToken, selectedProfessional.id]);
 
   useEffect(() => {
     getCategories().then();
   }, [getCategories]);
 
   useEffect(() => {
-    console.log({selectedCategory})
     getProfessionalsForCategory().then();
-  }, [selectedCategory.id])
+  }, [selectedCategory.id, getProfessionalsForCategory]);
 
   useEffect(() => {
-    if (professionals.length) {
-      console.log({professionals});
-      const latLngs = professionals.map((professional: ProfessionalObj) => {
-        const {geojson}: IProfessionalAttributes = professional.attributes;
-        const parsedGeojson = JSON.parse(geojson);
-        console.log({geojson, parsedGeojson});
-      });
-    }
-  }, [professionals])
+    getProfessionalDetails().then();
+  }, [selectedProfessional.id, getProfessionalDetails]);
 
   return (
     <div className="ResourceContainer">
       <ResourceContext.Provider value={{
-        getMapMarkers,
+        getProfessionalsForCategory,
 
         displayedCategory, selectedCategory,
         displayedProfessional, selectedProfessional,
-        displayedResource, selectedResource,
 
         setDisplayedCategory, setSelectedCategory,
         setDisplayedProfessional, setSelectedProfessional,
-        setDisplayedResource, setSelectedResource,
 
-        resources, professionals, categories,
+        professionals, categories,
 
-        setResources, setProfessionals, setCategories,
+        setProfessionals, setCategories,
 
         showDeleteResourceModal, showAddResourceModal,
         showEditResourceModal, showSubmitResourceModal,
 
         setShowDeleteResourceModal, setShowAddResourceModal,
         setShowEditResourceModal, setShowSubmitResourceModal,
+
+        map, setMap, markers, setMarkers, popups, setPopups
       }}>
-        <NavPanel
-          resources={resources}
-          userId={userId}
-        />
-        <ResourceMap resources={resources} professionals={professionals}/>
+        <NavPanel userId={userId}/>
+        <ProfessionalMap professionals={professionals}/>
         <InfoPanel
           slide={false}
           expanded={infoPanelExpanded}

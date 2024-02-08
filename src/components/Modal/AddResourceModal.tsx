@@ -9,7 +9,7 @@ import {onError} from "../../lib/error";
 
 const AddResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showAddResourceModal: show,
     setShowAddResourceModal: setShow,
   } = useResourceContext();
@@ -66,7 +66,7 @@ const AddResourceModal = () => {
         address: {street_1, street_2, city, state, country, postalCode},
         description,
       });
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       setIsLoading(false);
       setShow(false);
     } catch (e) {

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import Config from '../config';
 import {LatLngExpression} from "leaflet";
+import RefMarker from "./RefMarker";
+import {useResourceContext} from "../context/ResourceContext";
 
 interface IMapProps {
   viewport: any;
-  markers?: [any];
-  professionals?: [any];
+  markers: [any];
+  popupContent: Function;
 }
 
 const mapConf = Config.mapbox;
@@ -15,50 +17,23 @@ const { username, accessToken, keys } = mapConf;
 const tileUrl = `https://api.mapbox.com/styles/v1/${username}/${keys.bright}/tiles/256/{z}/{x}/{y}@2x?access_token=${accessToken}`
 
 const Map = (props: IMapProps) => {
-  const {viewport, markers, professionals} = props;
-
-  // console.log({markers});
-
+  const {viewport, markers, popupContent} = props;
   const { latitude, longitude, zoom } = viewport;
+  const {map} = useResourceContext();
 
   const renderMarkers = () => {
     return (
       <>
-        {professionals && professionals[0].id && professionals.map((marker) => {
-          const {geojson, nameLast, nameFirst, addressCity, addressState, addressCountry} = marker.attributes;
-          const parsedGeojson = JSON.parse(geojson);
-          const {coordinates} = parsedGeojson;
-          const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
-          console.log({latlng});
-
-          if (marker.id !== '') {
-            return (
-              <Marker key={marker.id} position={latlng}>
-                <Popup>
-                  <div className="popup-content">
-                    <div className="name">
-                      <span className="nameFirst">{nameFirst}</span>
-                      <span className="nameLast">{nameLast}</span>
-                    </div>
-                    <div className="location">
-                      <span className="addressCity">{addressCity}</span>,
-                      <span className="addressState">{addressState}</span>
-                      <span className="addressCountry">{addressCountry}</span>
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            )
-          } else {
-            return null;
-          }
-        })}
+        {markers && markers[0].id && markers.map((marker) => (
+          <RefMarker key={marker.id} marker={marker} popupContent={popupContent}/>
+        ))}
       </>
     )
   }
 
   return (
     <MapContainer
+      ref={map}
       center={[latitude, longitude]}
       zoom={zoom}
       zoomSnap={0.1}

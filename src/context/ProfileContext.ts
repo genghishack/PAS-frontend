@@ -1,4 +1,5 @@
 import {ChangeEventHandler, createContext, useContext} from "react";
+import {voidFn} from "../lib/utils";
 
 export const ProfileContext = createContext<{
   isLoading: boolean;
@@ -8,10 +9,10 @@ export const ProfileContext = createContext<{
   profilePhaseTransition: Function;
 }>({
   isLoading: false,
-  setIsLoading: () => {},
+  setIsLoading: voidFn,
   fields: [],
-  handleFieldChange: () => {},
-  profilePhaseTransition: () => {},
+  handleFieldChange: voidFn,
+  profilePhaseTransition: voidFn,
 });
 ProfileContext.displayName = 'ProfileContext';
 

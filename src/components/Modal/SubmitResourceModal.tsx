@@ -5,10 +5,10 @@ import {submitResource} from "../../lib/resource";
 
 const SubmitResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showSubmitResourceModal: show,
     setShowSubmitResourceModal: setShow,
-    selectedResource: resource,
+    selectedProfessional: resource,
   } = useResourceContext();
 
   const handleClose = () => setShow(false);
@@ -16,7 +16,7 @@ const SubmitResourceModal = () => {
   const handleSubmit = async () => {
     try {
       await submitResource(resource.id);
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       handleClose()
     } catch (e) {
       // TODO: handle error
@@ -30,7 +30,7 @@ const SubmitResourceModal = () => {
         <Modal.Title>Submit Resource for Approval</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Submit resource {resource.name} for approval?
+        Submit resource {resource.attributes.nameFirst} {resource.attributes.nameLast} for approval?
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

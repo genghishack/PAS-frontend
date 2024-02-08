@@ -5,10 +5,10 @@ import {useResourceContext} from "../../context/ResourceContext";
 
 const DeleteResourceModal = () => {
   const {
-    getMapMarkers,
+    getProfessionalsForCategory,
     showDeleteResourceModal: show,
     setShowDeleteResourceModal: setShow,
-    selectedResource: resource,
+    selectedProfessional: resource,
   } = useResourceContext();
 
   const handleClose = () => setShow(false);
@@ -16,7 +16,7 @@ const DeleteResourceModal = () => {
   const handleDelete = async () => {
     try {
       await deleteResource(resource.id);
-      await getMapMarkers();
+      await getProfessionalsForCategory();
       handleClose();
     } catch (e) {
       // TODO: handle error
@@ -30,7 +30,7 @@ const DeleteResourceModal = () => {
         <Modal.Title>Delete Resource</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Are you sure you want to delete the resource {resource.name}?
+        Are you sure you want to delete the resource {resource.attributes.nameFirst} {resource.attributes.nameLast}?
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

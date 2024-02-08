@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArrowAltCircleRight,
@@ -22,7 +22,6 @@ const CategoryItem = (props: ICategoryItem) => {
   const {
     selectedCategory,
     setSelectedCategory,
-    setSelectedResource,
     setShowDeleteResourceModal,
     setShowEditResourceModal,
     setShowSubmitResourceModal,
@@ -45,37 +44,37 @@ const CategoryItem = (props: ICategoryItem) => {
 
   const handleCategoryClick = (evt) => {
     evt.preventDefault();
-    // setDisplayedCategory(category);
     setSelectedCategory(category);
   }
 
-  const handleSubmitClick = async () => {
-    setSelectedResource(category);
-    setShowSubmitResourceModal(true);
-  }
+  // const handleSubmitClick = async () => {
+  //   setSelectedResource(category);
+  //   setShowSubmitResourceModal(true);
+  // }
 
-  const handleEditClick = () => {
-    setSelectedResource(category);
-    setShowEditResourceModal(true);
-  }
+  // const handleEditClick = () => {
+  //   setSelectedResource(category);
+  //   setShowEditResourceModal(true);
+  // }
 
-  const handleDeleteClick = () => {
-    setSelectedResource(category);
-    setShowDeleteResourceModal(true);
-  }
+  // const handleDeleteClick = () => {
+  //   setSelectedResource(category);
+  //   setShowDeleteResourceModal(true);
+  // }
+
 
   return (
     <div className="NavItem">
       <div className="categoryInfo">
         <div className="categoryName">
-          <Button variant="link" onClick={handleCategoryClick}>
+          <Button variant="link"
+                  onClick={handleCategoryClick}
+                  className={(selectedCategory.id && selectedCategory.id === category.id) ? 'selected' : ''}
+          >
             {nameDisplay}
           </Button>
         </div>
         {(selectedCategory.id && selectedCategory.id === category.id) ? <ProfessionalList/> : null}
-        {/*<div className="resourceLocation">*/}
-        {/*  {resourceLocation()}*/}
-        {/*</div>*/}
       </div>
       {/*{userId ? (*/}
       {/*  <div className="resourceControls">*/}

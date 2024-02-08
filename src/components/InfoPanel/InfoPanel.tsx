@@ -1,7 +1,7 @@
 import React from 'react';
 
 import closeSVG from "../../assets/close_icon.png"
-import ResourceInfo from "./ResourceInfo";
+import ProfessionalInfo from "./ProfessionalInfo";
 
 import "./InfoPanel.scss";
 
@@ -32,7 +32,7 @@ const InfoPanel = (props: IInfoBoxProps) => {
           onClick={handleCloseClick}
         />
         <div className="infoPanelContent">
-          <ResourceInfo/>
+          <ProfessionalInfo/>
         </div>
       </div>
     )
@@ -40,7 +40,7 @@ const InfoPanel = (props: IInfoBoxProps) => {
     return (
       <div className="InfoPanel">
         <div className="infoPanelContent">
-          <ResourceInfo/>
+          <ProfessionalInfo/>
         </div>
       </div>
     )

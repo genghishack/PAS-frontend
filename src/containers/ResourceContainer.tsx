@@ -90,7 +90,7 @@ const ResourceContainer = (props: IResourceContainer) => {
         const {coordinates} = parsedGeojson;
         const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
         //@ts-ignore
-        // map.current!.flyTo(latlng, 10);
+        map.current!.flyTo(latlng, 5);
         markers[selectedProfessional.id].current.openPopup()
       }
     } catch (e) {

@@ -25,6 +25,7 @@ const Map = (props: IMapProps) => {
     return (
       <>
         {markers && markers[0].id && markers.map((marker) => (
+          // <></>
           <RefMarker key={marker.id} marker={marker} popupContent={popupContent}/>
         ))}
       </>

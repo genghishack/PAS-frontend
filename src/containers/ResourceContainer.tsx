@@ -70,7 +70,7 @@ const ResourceContainer = (props: IResourceContainer) => {
         const professionalList: any[] = getIncludedRelationshipsOfType(
           included!, relationships, 'professional'
         );
-        // console.log({professionalList});
+        console.log({professionalList});
         setProfessionals(professionalList);
       }
     } catch (e) {

@@ -10,8 +10,10 @@ interface IRefMarker {
 
 const RefMarker = (props: IRefMarker) => {
   const {marker, popupContent} = props;
+  console.log({marker, popupContent})
   const {geojson} = marker.attributes;
   const parsedGeojson = JSON.parse(geojson);
+  console.log({parsedGeojson})
   const {coordinates} = parsedGeojson;
   const latlng: LatLngExpression = [coordinates[1], coordinates[0]];
   const {markers, popups} = useResourceContext()
